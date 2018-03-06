@@ -13,12 +13,13 @@ class RecordController extends Controller
     public function __construct(RecordInterface $recordRepository)
     {
         $this->recordRepository = $recordRepository;
+        $this->middleware('auth');
     }
     
     public function index()
     {
         $records = Record::all();
-        return view('records.index');
+        return view('records.index', compact('records'));
     }
 
 
@@ -38,24 +39,8 @@ class RecordController extends Controller
 
     public function show(Record $record)
     {
-        //
+        return view('records.show', compact('record'));
     }
 
 
-    public function edit(Record $record)
-    {
-        //
-    }
-
-
-    public function update(Request $request, Record $record)
-    {
-        //
-    }
-
-
-    public function destroy(Record $record)
-    {
-        //
-    }
 }

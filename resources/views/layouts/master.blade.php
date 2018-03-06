@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.css') }}">
     <link href="{{ asset('css/codebase.min.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +27,18 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/core/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.scrollLock.min.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.appear.min.js') }}"></script>
+    <script src="{{ asset('js/core/jquery.countTo.min.js') }}"></script>
+    <script src="{{ asset('js/core/js.cookie.min.js') }}"></script>
     <script src="{{ asset('js/codebase.js') }}"></script>
+
+    <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('js/plugins/datatables/datatable.js')}}"></script>
+
 </body>
 </html>
