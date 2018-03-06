@@ -27,8 +27,8 @@
                                 <!-- Logo -->
                                 <div class="content-header-item">
                                     <a class="link-effect font-w700" href="">
-                                        <i class="si si-fire text-primary"></i>
-                                        <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                                        <i class="si si-drop"></i>
+                                        <span class="font-size-xl text-dual-primary-dark">Gluco</span><span class="font-size-xl text-primary">Log</span>
                                     </a>
                                 </div>
                                 <!-- END Logo -->
@@ -52,7 +52,7 @@
                                 </a>
                                 <ul class="list-inline mt-10">
                                     <li class="list-inline-item">
-                                        <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">J. Smith</a>
+                                        <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">{{auth::user()->name}}</a>
                                     </li>
                                     <li class="list-inline-item">
                                         <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
@@ -75,7 +75,7 @@
                         <div class="content-side content-side-full">
                             <ul class="nav-main">
                                 <li>
-                                    <a class="active" href="">
+                                    <a class="active" href="/home">
                                         <i class="si si-cup"></i>
                                         <span class="sidebar-mini-hide">Dashboard</span>
                                     </a>
@@ -87,14 +87,14 @@
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-puzzle"></i>
-                                        <span class="sidebar-mini-hide">Dropdown</span>
+                                        <span class="sidebar-mini-hide">Medidas</span>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="javascript:void(0)">Link #1</a>
+                                            <a href="/records/create">Registrar Medida</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)">Link #2</a>
+                                            <a href="/records">Historial</a>
                                         </li>
                                     </ul>
                                 </li>
