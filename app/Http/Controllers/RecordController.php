@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Record;
 use Illuminate\Http\Request;
-
+use App\Repositories\Contracts\RecordInterface;
 class RecordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    protected $recordRepository;
+
+    public function __construct(RecordInterface $recordRepository)
+    {
+        $this->recordRepository = $recordRepository;
+    }
+    
     public function index()
     {
         $records = Record::all();
@@ -27,7 +30,9 @@ class RecordController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $this->recordRepository->store($request);
+
+        return redirect('/home');
     }
 
 

@@ -27,11 +27,10 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'user_id' => function() {
             return factory('App\User')->create()->id;
         },
-        'date' => $faker->date,
-        'in_fast' => $faker->boolean(0),
-        'comment' => $faker->sentence,
-        'food' => $faker->sentence,
-        'measure' => $faker->numberBetween(10,1000),
-        'device_measure' => $faker->numberBetween(10,1000)
+        'fecha' => $faker->date,
+        'ayuno' => $faker->boolean(0),
+        'comentario' => $faker->sentence,
+        'comida' => $faker->sentence,
+        'medida' => $faker->numberBetween(10,1000)
     ];
 });

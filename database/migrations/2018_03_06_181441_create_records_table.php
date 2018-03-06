@@ -16,13 +16,11 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->date('date');
-            $table->boolean('in_fast');
-            $table->text('comment')->nullable();
-            $table->string('food')->nullable();
-            $table->string('picture')->nullable();
-            $table->integer('measure');
-            $table->integer('device_measure');
+            $table->date('fecha');
+            $table->boolean('ayuno');
+            $table->text('comentario')->nullable();
+            $table->string('comida')->nullable();
+            $table->integer('medida');
             $table->timestamps();
         });
     }

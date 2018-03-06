@@ -13,39 +13,40 @@
         </div>
     </div>
     <div class="block-content">
-        <form action="/" method="post" onsubmit="return false;">
+        <form action="/records" method="post">
+            {{csrf_field()}}
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label for="date">Fecha</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="date" class="form-control" name="fecha" required>
                 </div>
                 <div class="form-group col-sm-2">
-                        <label for="date">Toma</label>
-                        <input type="number" name="measure" class="form-control">
-                    </div>
+                    <label for="date">Toma</label>
+                    <input type="number" name="medida" class="form-control" required>
+                </div>
                 <div class="form-group col-sm-3">
                     <label>¿Está en ayuno?</label>
                     <br>
-                    <div class="custom-control custom-checkbox custom-control-inline mb-5">
-                        <input class="custom-control-input" type="checkbox" name="example-inline-checkbox1" id="example-inline-checkbox1" value="option1"
-                            checked>
-                        <label class="custom-control-label" for="example-inline-checkbox1">Si</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline mb-5">
-                        <input class="custom-control-input" type="checkbox" name="example-inline-checkbox2" id="example-inline-checkbox2" value="option2">
-                        <label class="custom-control-label" for="example-inline-checkbox2">No</label>
-                    </div>
+                    <label class="css-control css-control-primary css-radio">
+                        <input class="css-control-input" name="ayuno" value="1" type="radio">
+                        <span class="css-control-indicator"></span> Si
+                    </label>
+
+                    <label class="css-control css-control-primary css-radio">
+                        <input class="css-control-input" name="ayuno" value="0" type="radio" required>
+                        <span class="css-control-indicator"></span> No
+                    </label>
                 </div>
                 <div class="form-group col-sm-4">
-                        <label for="date">¿Que comió?</label>
-                        <textarea name="comment" cols="20" rows="2" class="form-control"></textarea>
-                    </div>
-                    
+                    <label for="date">¿Que comió?</label>
+                    <textarea name="comida" cols="20" rows="2" class="form-control"></textarea>
+                </div>
+
                 <div class="form-group col-sm-4">
                     <label for="date">Comentario</label>
-                    <textarea name="comment" cols="20" rows="2" class="form-control"></textarea>
+                    <textarea name="comentario" cols="20" rows="2" class="form-control"></textarea>
                 </div>
-                
+
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-alt-primary">Guardar</button>

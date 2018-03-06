@@ -14,24 +14,22 @@
         </div>
     </div>
     <div class="block-content">
-        @foreach($records as $record)
-        @if($record->measure > 210)
+        @foreach($records as $record) @if($record->medida > 210)
         <div class="alert alert-danger font-weight-bold" role="alert">
-            {{$record->created_at}} - {{$record->food}}
-            <h3 class="float-right">{{$record->measure}}</h3>
+            <a href="{{$record->path()}}">{{$record->created_at}} - {{$record->comida}}</a>
+            <h3 class="float-right">{{$record->medida}}</h3>
         </div>
-        @elseif($record->measure < 80)
-        <div class="alert alert-danger font-weight-bold" role="alert">
-                {{$record->created_at}} - {{$record->food}}
-                <h3 class="float-right">{{$record->measure}}</h3>
-            </div>
-        @else
-        <div class="alert alert-success font-weight-bold" role="alert">
-                {{$record->created_at}} - {{$record->food}}
-                <h3 class="float-right">{{$record->measure}}</h3>
-            </div>
-        @endif
-        @endforeach
+        @elseif($record->medida
+        < 80) <div class="alert alert-danger font-weight-bold" role="alert">
+            <a href="{{$record->path()}}">{{$record->created_at}} - {{$record->comida}}</a>
+            <h3 class="float-right">{{$record->medida}}</h3>
     </div>
+    @else
+    <div class="alert alert-success font-weight-bold" role="alert">
+        <a href="{{$record->path()}}">{{$record->created_at}} - {{$record->comida}}</a>
+        <h3 class="float-right">{{$record->medida}}</h3>
+    </div>
+    @endif @endforeach
+</div>
 </div>
 @endsection
