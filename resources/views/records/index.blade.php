@@ -6,6 +6,7 @@
             Historial
         </h3>
         <div class="block-options">
+            <a href="/records/create" class="btn btn-sm btn-primary">Registrar Medida</a>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
                 <i class="si si-pin"></i>

@@ -6,6 +6,7 @@
             Historial de peso
         </h3>
         <div class="block-options">
+            <a href="/pesos/create" class="btn btn-sm btn-primary">Registrar Peso</a>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
                 <i class="si si-pin"></i>

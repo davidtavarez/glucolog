@@ -61,10 +61,24 @@
                                             <a href="/records/create">Registrar Medida</a>
                                         </li>
                                         <li>
-                                            <a href="/records">Historial</a>
+                                            <a href="/records">Historial de medidas</a>
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                        <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                            <i class="si si-puzzle"></i>
+                                            <span class="sidebar-mini-hide">Peso</span>
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="/pesos/create">Registrar Peso</a>
+                                            </li>
+                                            <li>
+                                                <a href="/pesos">Historial de peso</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                             </ul>
                         </div>
                         <!-- END Side Navigation -->
