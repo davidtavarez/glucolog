@@ -34,3 +34,13 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'medida' => $faker->numberBetween(10,1000)
     ];
 });
+
+$factory->define(App\Peso::class, function (Faker $faker) {
+    return [
+        'user_id' => function() {
+            return factory('App\User')->create()->id;
+        },
+        'fecha' => $faker->date,
+        'peso' => $faker->numberBetween(70,150)
+    ];
+});

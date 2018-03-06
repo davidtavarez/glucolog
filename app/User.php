@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Record');
     }
+
+    public function pesos()
+    {
+        return $this->hasMany('App\Peso');
+    }
 }
