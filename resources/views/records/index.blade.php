@@ -20,6 +20,7 @@
                     <th>Fecha</th>
                     <th>¿Que comió?</th>
                     <th>Medida</th>
+                    <th>Usuario</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@
                             </span>
                             @endif
                     </td>
+                    <td>{{$record->user->name}}</td>
                 </tr>
                 @endforeach
             </tbody>

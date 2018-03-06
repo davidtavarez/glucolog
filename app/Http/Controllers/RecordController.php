@@ -31,6 +31,11 @@ class RecordController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'fecha' => 'required',
+            'medida' => 'required',
+            'ayuno' => 'required'
+        ]);
         $this->recordRepository->store($request);
 
         return redirect('/home');
