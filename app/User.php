@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_user', 'is_admin'
     ];
 
     /**
@@ -35,5 +35,10 @@ class User extends Authenticatable
     public function pesos()
     {
         return $this->hasMany('App\Peso');
+    }
+
+    public function path()
+    {
+        return '/admin/' . $this->id . '/edit';
     }
 }
