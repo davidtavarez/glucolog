@@ -17,6 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/records', 'RecordController@index');
 Route::get('/pesos', 'PesoController@index');
 
+Route::get('/records/{record}', 'RecordController@show');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/create', 'AdminController@create');
