@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return '/admin/' . $this->id . '/edit';
     }
+
+    public function isAdmin(){
+        return (\Auth::check() && $this->is_admin === 1);
+    }
 }

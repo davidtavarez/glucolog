@@ -51,6 +51,23 @@
                                     <span class="sidebar-mini-visible">HD</span>
                                     <span class="sidebar-mini-hidden">Heading</span>
                                 </li>
+                                @if (Auth::user()->isAdmin())
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
+                                        <i class="si si-puzzle"></i>
+                                        <span class="sidebar-mini-hide">Admin</span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="/admin/create">Crear usuario</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin">Usuarios</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                               
+                                @endif
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-puzzle"></i>
@@ -65,6 +82,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                
                                 <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                             <i class="si si-puzzle"></i>
