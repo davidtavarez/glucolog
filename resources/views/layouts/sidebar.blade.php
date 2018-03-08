@@ -54,7 +54,7 @@
                                 @if (Auth::user()->isAdmin())
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-puzzle"></i>
+                                        <i class="si si-users"></i>
                                         <span class="sidebar-mini-hide">Admin</span>
                                     </a>
                                     <ul>
@@ -70,7 +70,7 @@
                                 @endif
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                        <i class="si si-puzzle"></i>
+                                        <i class="si si-drop"></i>
                                         <span class="sidebar-mini-hide">Medidas</span>
                                     </a>
                                     <ul>
@@ -85,7 +85,7 @@
                                 
                                 <li>
                                         <a class="nav-submenu" data-toggle="nav-submenu" href="#">
-                                            <i class="si si-puzzle"></i>
+                                            <i class="si si-graph"></i>
                                             <span class="sidebar-mini-hide">Peso</span>
                                         </a>
                                         <ul>
