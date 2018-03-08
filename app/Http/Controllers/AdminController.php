@@ -29,6 +29,11 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'=>'required|max:120',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6|confirmed'
+        ]);
         $this->adminRepository->store($request);
 
         return redirect('/admin');
@@ -43,14 +48,10 @@ class AdminController extends Controller
 
     public function update(Request $request,User $user)
     {
-        $request->validate([
-            'password' => 'required|same:password',
-            'password_confirmation' => 'required|same:password',     
-          ]);
 
         $this->adminRepository->update($request,$user);
 
-        return back();
+        return redirect('/admin');
     }
 
     public function destroy(User $user)

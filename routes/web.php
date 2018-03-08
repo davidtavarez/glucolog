@@ -24,3 +24,4 @@ Route::get('/admin/create', 'AdminController@create');
 Route::post('/admin', 'AdminController@store');
 Route::get('/admin/{user}/edit', 'AdminController@edit');
 Route::put('/admin/{user}', 'AdminController@update');
+Route::delete('/admin/{user}', 'AdminController@destroy');

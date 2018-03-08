@@ -22,19 +22,26 @@
                     <th>Email</th>
                     <th>Is Admin</th>
                     <th>Is User</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($users as $user)
                 <tr>
                     <td>
-                        <a href="{{$user->path()}}">{{$user->name}}</a>
+                       <a href="{{$user->path()}}">{{$user->name}}</a> 
                     </td>
                     <td>
                         {{$user->email}}
                     </td>
                     <td>{{$user->is_admin}}</td>
                     <td>{{$user->is_user}}</td>
+                    <td class="text-center">
+                        <form action="/admin/{{$user->id}}" method="POST" onsubmit="return ConfirmDelete()">
+                            {{ csrf_field() }} {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-sm btn-secondary"><i class="fa fa-close"></i></button>
+                         </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -42,5 +49,11 @@
     </div>
 </div>
 
+
+<script>
+        function ConfirmDelete() {
+            return confirm('Esta seguro que desea borrar este usuario?');
+        }
+    </script>
 
 @endsection

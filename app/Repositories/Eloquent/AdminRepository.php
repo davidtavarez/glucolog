@@ -18,11 +18,12 @@ class AdminRepository implements AdminInterface
     }
     public function update($request, $user)
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->is_admin = $request->is_admin;
-        $user->is_user = $request->is_user;
-        $user->update();
+        $newPassword = $request->get('password');
+
+        if(empty($newPassword)){
+            $user->update($request->except('password'));
+        }else{
+            $user->update($request->all());
+        }
     }
 }
