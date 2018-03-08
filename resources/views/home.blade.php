@@ -7,7 +7,6 @@
             </h3>
             <div class="block-options">
                 <a href="/records/create" class="btn-block-option">Registrar Medida <i class="si si-drop"></i></a>
-                <a href="/pesos/create" class="btn-block-option">Registrar Peso <i class="si si-graph"></i></a>
             </div>
         </div>
         <div class="block-content">
