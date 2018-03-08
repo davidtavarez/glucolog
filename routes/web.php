@@ -1,7 +1,7 @@
 <?php
 
 
-Route::group(['middleware' => ['Admin','User']], function () {
+Route::group(['middleware' => ['User']], function () {
     Route::get('/pesos/create', 'PesoController@create');
     Route::post('/pesos', 'PesoController@store');
 

@@ -13,7 +13,7 @@ class PesoController extends Controller
     public function __construct(PesoInterface $pesoRepository)
     {
         $this->pesoRepository = $pesoRepository;
-        $this->middleware('auth');
+
     }
 
     public function index()
