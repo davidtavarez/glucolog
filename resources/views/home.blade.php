@@ -6,11 +6,8 @@
                 <small>{{date('d/m/Y')}}</small>
             </h3>
             <div class="block-options">
-                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
-                    <i class="si si-pin"></i>
-                </button>
-                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                <a href="/records/create" class="btn-block-option">Registrar Medida <i class="si si-drop"></i></a>
+                <a href="/pesos/create" class="btn-block-option">Registrar Peso <i class="si si-graph"></i></a>
             </div>
         </div>
         <div class="block-content">
