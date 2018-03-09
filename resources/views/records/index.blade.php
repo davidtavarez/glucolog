@@ -28,7 +28,7 @@
                 @foreach($records as $record)
                 <tr>
                     <td>
-                        <a href="{{$record->path()}}">{{$record->created_at->format('Y-m-d H:i:s A')}}</a>
+                        <a href="{{$record->path()}}">{{$record->fcreated()}}</a>
                     </td>
                     <td>
                         @if($record->comida === null) Estaba en ayuno @else {{$record->comida}} @endif

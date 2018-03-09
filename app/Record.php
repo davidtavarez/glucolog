@@ -18,4 +18,9 @@ class Record extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function fcreated()
+    {
+        return $this->created_at->format('Y-m-d H:i:s A');
+    }
 }

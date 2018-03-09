@@ -14,7 +14,7 @@
              @if($record->medida > 180 || $record->medida < 70)
              <div class="col-md-10">
                 <div class="alert alert-danger" role="alert">
-                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->created_at->format('Y-m-d H:i:s A')}}</h3>
+                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->fcreated()}}</h3>
                     <p class="mb-0"><b>Comida:</b> @if($record->comida === null)
                         Estaba en ayuno 
                         @else 
@@ -25,7 +25,7 @@
             @else
             <div class="col-md-10">
                 <div class="alert alert-success" role="alert">
-                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->created_at->format('Y-m-d H:i:s A')}}</h3>
+                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->fcreated()}}</h3>
                     <p class="mb-0"><b>Comida:</b> @if($record->comida === null)
                         Estaba en ayuno 
                         @else 

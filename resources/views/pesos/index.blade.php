@@ -27,7 +27,7 @@
                 @foreach($pesos as $peso)
                 <tr>
                     <td>
-                        {{$peso->created_at->format('Y-m-d H:i:s A')}}
+                        {{$peso->fcreated()}}
                     </td>
                     <td>
                         {{$peso->peso}}
