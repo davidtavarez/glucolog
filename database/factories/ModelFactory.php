@@ -33,7 +33,8 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'ayuno' => $faker->boolean(0),
         'comentario' => $faker->sentence,
         'comida' => $faker->sentence,
-        'medida' => $faker->numberBetween(10,1000)
+        'medida' => $faker->numberBetween(10,1000),
+        'tipo_comida' => 'Almuerzo'
     ];
 });
 
