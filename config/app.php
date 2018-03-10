@@ -160,7 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Repositories\Providers\RecordProvider::class,
-        App\Repositories\Providers\PesoProvider::class,
+        App\Repositories\Providers\WeightProvider::class,
         App\Repositories\Providers\AdminProvider::class,
 
     ],

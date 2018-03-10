@@ -90,10 +90,10 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="/pesos/create">Registrar Peso</a>
+                                                <a href="/weights/create">Registrar Peso</a>
                                             </li>
                                             <li>
-                                                <a href="/pesos">Historial de peso</a>
+                                                <a href="/weights">Historial de peso</a>
                                             </li>
                                         </ul>
                                     </li>

@@ -13,16 +13,16 @@
         </div>
     </div>
     <div class="block-content">
-        <form action="/pesos" method="post">
+        <form action="/weights" method="post">
             {{csrf_field()}}
             <div class="row">
                 <div class="form-group col-sm-4">
                     <label for="date">Fecha</label>
-                    <input type="date" class="form-control" name="fecha" required>
+                    <input type="date" class="form-control" name="date" required>
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="date">Peso</label>
-                    <input type="number" name="peso" class="form-control" required>
+                    <input type="number" name="weight" class="form-control" required>
                 </div>
             </div>
             <div class="form-group">
