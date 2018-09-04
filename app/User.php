@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_user', 'is_admin'
     ];
 
     /**
@@ -26,4 +26,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function records()
+    {
+        return $this->hasMany('App\Record');
+    }
+
+    public function pesos()
+    {
+        return $this->hasMany('App\Peso');
+    }
+
+    public function path()
+    {
+        return '/admin/' . $this->id . '/edit';
+    }
+
+    public function isAdmin(){
+        return (\Auth::check() && $this->is_admin === 1);
+    }
 }
