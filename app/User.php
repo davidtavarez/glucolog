@@ -32,9 +32,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Record');
     }
 
-    public function pesos()
+    public function weights()
     {
-        return $this->hasMany('App\Peso');
+        return $this->hasMany('App\Weight');
     }
 
     public function path()

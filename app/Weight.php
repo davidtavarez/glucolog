@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Peso extends Model
+class Weight extends Model
 {
-    protected $table = 'pesos';
-    protected $fillable = ['peso', 'fecha', 'user_id'];
+    protected $table = 'weights';
+    protected $fillable = ['weight', 'date', 'user_id'];
     public function user()
     {
         return $this->belongsTo('App\User');

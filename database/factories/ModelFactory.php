@@ -33,16 +33,17 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'ayuno' => $faker->boolean(0),
         'comentario' => $faker->sentence,
         'comida' => $faker->sentence,
-        'medida' => $faker->numberBetween(10,1000)
+        'medida' => $faker->numberBetween(10,1000),
+        'tipo_comida' => 'Almuerzo'
     ];
 });
 
-$factory->define(App\Peso::class, function (Faker $faker) {
+$factory->define(App\Weight::class, function (Faker $faker) {
     return [
         'user_id' => function() {
             return factory('App\User')->create()->id;
         },
-        'fecha' => $faker->date,
-        'peso' => $faker->numberBetween(70,150)
+        'date' => $faker->date,
+        'weight' => $faker->numberBetween(70,150)
     ];
 });

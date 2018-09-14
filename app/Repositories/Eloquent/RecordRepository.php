@@ -16,6 +16,7 @@ class RecordRepository implements RecordInterface
             'comentario' => $request->comentario,
             'comida' => $request->comida,
             'medida' => $request->medida,
+            'tipo_comida' => $request->tipo_comida
         ]);
     }
 }

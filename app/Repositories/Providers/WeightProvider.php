@@ -3,15 +3,15 @@
 namespace App\Repositories\Providers;
 use Illuminate\Support\ServiceProvider;
 
-class PesoProvider extends ServiceProvider
+class WeightProvider extends ServiceProvider
 {
    public function register()
    {
       $this->app->bind(
-         'App\Repositories\Contracts\PesoInterface',
+         'App\Repositories\Contracts\WeightInterface',
          // To change the data source, replace this class name
          // with another implementation
-         'App\Repositories\Eloquent\PesoRepository'
+         'App\Repositories\Eloquent\WeightRepository'
       );
    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface PesoInterface
+interface WeightInterface
 {
     public function store($request);
 } 
