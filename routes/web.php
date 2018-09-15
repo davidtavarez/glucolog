@@ -25,3 +25,9 @@ Route::post('/admin', 'AdminController@store');
 Route::get('/admin/{user}/edit', 'AdminController@edit');
 Route::put('/admin/{user}', 'AdminController@update');
 Route::delete('/admin/{user}', 'AdminController@destroy');
+
+Auth::routes(['verify' => true]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
