@@ -6,7 +6,7 @@
             Historial de peso
         </h3>
         <div class="block-options">
-            <a href="/pesos/create" class="btn btn-sm btn-primary">Registrar Peso</a>
+            <a href="/weights/create" class="btn btn-sm btn-primary">Registrar Peso</a>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
                 <i class="si si-pin"></i>
@@ -24,16 +24,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pesos as $peso)
+                @foreach($weights as $weight)
                 <tr>
                     <td>
-                        {{$peso->fcreated()}}
+                        {{$weight->fcreated()}}
                     </td>
                     <td>
-                        {{$peso->peso}}
+                        {{$weight->weight}}
                     </td>
                     <td>
-                        {{$peso->user->name}}
+                        {{$weight->user->name}}
                     </td>
                 </tr>
                 @endforeach

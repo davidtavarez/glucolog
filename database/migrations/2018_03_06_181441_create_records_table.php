@@ -20,6 +20,7 @@ class CreateRecordsTable extends Migration
             $table->boolean('ayuno');
             $table->text('comentario')->nullable();
             $table->string('comida')->nullable();
+            $table->string('tipo_comida')->nullable();
             $table->integer('medida');
             $table->timestamps();
         });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     protected $table = 'records';
-    protected $fillable = ['fecha', 'comida', 'medida', 'ayuno', 'comentario','user_id'];
+    protected $fillable = ['fecha', 'comida', 'medida', 'ayuno', 'comentario','user_id','tipo_comida'];
 
     public function path()
     {
