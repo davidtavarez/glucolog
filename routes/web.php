@@ -13,7 +13,7 @@ Route::get('/','HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('vefified');
 Route::get('/records', 'RecordController@index');
 Route::get('/weights', 'WeightController@index');
 
@@ -27,6 +27,8 @@ Route::put('/admin/{user}', 'AdminController@update');
 Route::delete('/admin/{user}', 'AdminController@destroy');
 
 Auth::routes(['verify' => true]);
+
+Auth::routes();
 
 Auth::routes();
 
