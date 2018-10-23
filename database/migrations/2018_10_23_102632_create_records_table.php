@@ -16,11 +16,12 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('board_id')->unsigned();
             $table->date('date');
-            $table->boolean('is_in_fast');
             $table->text('comment')->nullable();
             $table->string('food')->nullable();
-            $table->string('food_type')->nullable();
+            $table->tinyInteger('condition');
+            $table->string('status');
             $table->integer('measure');
             $table->softDeletes();
             $table->timestamps();

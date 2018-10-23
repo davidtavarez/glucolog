@@ -26,46 +26,38 @@
                     </div>
                 </div>
                 <div class="form-group row col-sm-12">
-                    <div class="col-sm-2">
-                        <label>¿Está en ayuno?</label>
+                    <div class="col-sm-10">
+                        <label>Condición:</label>
                         <br>
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="is_in_fast" value="1" type="radio">
-                            <span class="css-control-indicator"></span> Si
+                            <input class="css-control-input" name="condition" value="1" type="radio" checked required>
+                            <span class="css-control-indicator"></span> Basal y antes de las comidas
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="is_in_fast" value="0" type="radio" required>
-                            <span class="css-control-indicator"></span> No
-                        </label>
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Tipo de comida:</label>
-                        <br>
-                        <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="food_type" value="Desayuno" type="radio">
-                            <span class="css-control-indicator"></span> Desayuno
+                            <input class="css-control-input" name="condition" value="2" type="radio" required>
+                            <span class="css-control-indicator"></span> 2 horas poscomida
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="food_type" value="Almuerzo" type="radio" required>
-                            <span class="css-control-indicator"></span> Almuerzo
+                            <input class="css-control-input" name="condition" value="3" type="radio" required>
+                            <span class="css-control-indicator"></span> Antes de dormir
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="food_type" value="Cena" type="radio" required>
-                            <span class="css-control-indicator"></span> Cena
+                            <input class="css-control-input" name="condition" value="4" type="radio" required>
+                            <span class="css-control-indicator"></span> De madrugada
                         </label>
                     </div>
                 </div>
                 <div class="form-group row col-sm-12">
                     <div class="col-sm-4">
-                        <label for="date">¿Que comió?</label>
-                        <textarea name="food" cols="20" rows="2" class="form-control"></textarea>
-                    </div>
-                    <div class="col-sm-4">
                         <label for="date">Comentario</label>
                         <textarea name="comment" cols="20" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-4 food" style="display:none;">
+                        <label for="date">¿Que comió?</label>
+                        <textarea name="food" cols="20" rows="2" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -84,4 +76,18 @@
         @endif
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$('input[type="radio"]').click(function () {
+    if ($(this).attr("value") !== "2") {
+        $(".food").hide('slow');
+    }
+    if ($(this).attr("value") == "2") {
+        $(".food").show('slow');
+    }
+});
+
+</script>
 @endsection

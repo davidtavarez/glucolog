@@ -1,56 +1,22 @@
 @extends('layouts.master') @section('content')
 
-<div class="block">
-    <div class="block-header block-header-default">
-        <h3 class="block-title">
-            Historial
-        </h3>
-        <div class="block-options">
-            <a href="/records/create" class="btn btn-sm btn-primary">Registrar Glicemia</a>
-            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
-                <i class="si si-pin"></i>
-            </button>
-            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+<h2 class="content-heading">Niveles de glicemia</h2>
+<div class="row gutters-tiny">
+@foreach($records as $record)
+<div class="col-6 col-md-4 col-xl-2">
+    <a class="block block-rounded block-bordered block-link-pop text-center" href="{{ $record->path() }}">
+        <div class="block-content">
+            <p class="mt-5 text-pulse">
+            <i class="si si-drop fa-2x text-pulse"></i>
+            <br>
+                <strong>{{ $record->measure }}</strong>
+            </p>
+            <p class="font-w300">{{ $record->status }} <br> {{ $record->created_at->diffForHumans() }}</p>
         </div>
-    </div>
-    <div class="block-content">
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>¿Que comió?</th>
-                    <th>Glicemia</th>
-                    <th>Usuario</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($records as $record)
-                <tr>
-                    <td>
-                        <a href="{{$record->path()}}">{{$record->fcreated()}}</a>
-                    </td>
-                    <td>
-                        @if($record->food === null) Estaba en ayuno @else {{$record->food}} - {{$record->food_type}} @endif
-                    </td>
-                    <td>
-                        @if($record->measure > 180 || $record->measure
-                        < 70 ) <span class="badge badge-danger">
-                            {{$record->measure}}
-                            </span>
-                            @else
-                            <span class="badge badge-success">
-                                {{$record->measure}}
-                            </span>
-                            @endif
-                    </td>
-                    <td>{{$record->user->name}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    </a>
+</div>
+@endforeach
 </div>
 
-
+{{ $records->links() }}
 @endsection

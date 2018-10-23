@@ -2,49 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecordValidation;
 use App\Models\Record;
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\RecordInterface;
+
 class RecordController extends Controller
 {
 
-    protected $recordRepository;
+    protected $repo;
 
-    public function __construct(RecordInterface $recordRepository)
+    public function __construct(RecordInterface $repo)
     {
-        $this->recordRepository = $recordRepository;
+        $this->repo = $repo;
     }
-    
+
     public function index()
     {
-        $records = Record::all();
-        return view('records.index', compact('records'));
+        return $this->repo->index();
     }
-
 
     public function create()
     {
         return view('records.create');
     }
 
-
-    public function store(Request $request)
+    public function store(RecordValidation $request)
     {
-        $request->validate([
-            'date' => 'required',
-            'measure' => 'required',
-            'is_in_fast' => 'required'
-        ]);
-        $this->recordRepository->store($request);
-
-        return redirect('/home');
+        return $this->repo->store($request);
     }
-
 
     public function show(Record $record)
     {
         return view('records.show', compact('record'));
     }
-
 
 }

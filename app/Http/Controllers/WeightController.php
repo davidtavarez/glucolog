@@ -3,43 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Weight;
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\WeightInterface;
+use App\Http\Requests\WeightValidation;
+use Illuminate\Http\Request;
 
 class WeightController extends Controller
 {
-    protected $weightRepository;
+    protected $repo;
 
-    public function __construct(WeightInterface $weightRepository)
+    public function __construct(WeightInterface $repo)
     {
-        $this->weightRepository = $weightRepository;
-
+        $this->repo = $repo;
     }
 
     public function index()
     {
-        $weights = Weight::all();
-        return view('weight.index', compact('weights'));
+        return $this->repo->index();
     }
-
 
     public function create()
     {
         return view('weight.create');
     }
 
-
-    public function store(Request $request)
+    public function store(WeightValidation $request)
     {
-        $request->validate([
-            'weight' => 'required',
-            'date' => 'required'
-        ]);
-
-        $this->weightRepository->store($request);
-
-        return redirect('/weights');
+        return $this->repo->store($request);
     }
-
 
 }

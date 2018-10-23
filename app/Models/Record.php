@@ -11,7 +11,7 @@ class Record extends Model
     use SoftDeletes;
 
     protected $table = 'records';
-    protected $fillable = ['date', 'food', 'measure', 'is_in_fast', 'comment','user_id','food_type'];
+    protected $fillable = ['date', 'food', 'measure', 'status', 'comment','user_id','condition', 'board_id'];
     protected $dates = ['deleted_at'];
 
     public function path()
@@ -21,7 +21,12 @@ class Record extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function board()
+    {
+        return $this->belongsTo('App\Models\Board');
     }
 
     public function fcreated()
