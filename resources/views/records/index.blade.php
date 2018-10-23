@@ -31,16 +31,16 @@
                         <a href="{{$record->path()}}">{{$record->fcreated()}}</a>
                     </td>
                     <td>
-                        @if($record->comida === null) Estaba en ayuno @else {{$record->comida}} - {{$record->tipo_comida}} @endif
+                        @if($record->food === null) Estaba en ayuno @else {{$record->food}} - {{$record->food_type}} @endif
                     </td>
                     <td>
-                        @if($record->medida > 180 || $record->medida
+                        @if($record->measure > 180 || $record->measure
                         < 70 ) <span class="badge badge-danger">
-                            {{$record->medida}}
+                            {{$record->measure}}
                             </span>
                             @else
                             <span class="badge badge-success">
-                                {{$record->medida}}
+                                {{$record->measure}}
                             </span>
                             @endif
                     </td>

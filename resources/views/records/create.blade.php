@@ -18,11 +18,11 @@
                 <div class="form-group row col-sm-12">
                     <div class="col-sm-4">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" name="fecha" required>
+                        <input type="date" class="form-control" name="date" required>
                     </div>
                     <div class="col-sm-2">
                         <label for="date">Glicemia</label>
-                        <input type="number" name="medida" class="form-control" required>
+                        <input type="number" name="measure" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group row col-sm-12">
@@ -30,12 +30,12 @@
                         <label>¿Está en ayuno?</label>
                         <br>
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="ayuno" value="1" type="radio">
+                            <input class="css-control-input" name="is_in_fast" value="1" type="radio">
                             <span class="css-control-indicator"></span> Si
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="ayuno" value="0" type="radio" required>
+                            <input class="css-control-input" name="is_in_fast" value="0" type="radio" required>
                             <span class="css-control-indicator"></span> No
                         </label>
                     </div>
@@ -43,17 +43,17 @@
                         <label>Tipo de comida:</label>
                         <br>
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Desayuno" type="radio">
+                            <input class="css-control-input" name="food_type" value="Desayuno" type="radio">
                             <span class="css-control-indicator"></span> Desayuno
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Almuerzo" type="radio" required>
+                            <input class="css-control-input" name="food_type" value="Almuerzo" type="radio" required>
                             <span class="css-control-indicator"></span> Almuerzo
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Cena" type="radio" required>
+                            <input class="css-control-input" name="food_type" value="Cena" type="radio" required>
                             <span class="css-control-indicator"></span> Cena
                         </label>
                     </div>
@@ -61,11 +61,11 @@
                 <div class="form-group row col-sm-12">
                     <div class="col-sm-4">
                         <label for="date">¿Que comió?</label>
-                        <textarea name="comida" cols="20" rows="2" class="form-control"></textarea>
+                        <textarea name="food" cols="20" rows="2" class="form-control"></textarea>
                     </div>
                     <div class="col-sm-4">
                         <label for="date">Comentario</label>
-                        <textarea name="comentario" cols="20" rows="2" class="form-control"></textarea>
+                        <textarea name="comment" cols="20" rows="2" class="form-control"></textarea>
                     </div>
                 </div>
             </div>

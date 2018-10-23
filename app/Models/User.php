@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_user', 'is_admin'
+        'name', 'email', 'password', 'is_user', 'is_admin', 'board_id'
     ];
 
     /**
@@ -33,23 +33,23 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $dates = ['deleted_at'];
 
-
+    public function board()
+    {
+        return $this->belongsTo('App\Models\Board');
+    }
+    
     public function records()
     {
-        return $this->hasMany('App\Record');
+        return $this->hasMany('App\Models\Record');
     }
 
     public function weights()
     {
-        return $this->hasMany('App\Weight');
+        return $this->hasMany('App\Models\Weight');
     }
 
     public function path()
     {
         return '/admin/' . $this->id . '/edit';
-    }
-
-    public function isAdmin(){
-        return (\Auth::check() && $this->is_admin === 1);
     }
 }
