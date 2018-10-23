@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Record;
+
 class HomeController extends Controller
 {
     /**
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $records = Record::orderby('date', 'desc')->get();
+        $records = \App\Models\Record::all();
         return view('home', compact('records'));
     }
 }

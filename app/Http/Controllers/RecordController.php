@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Record;
+use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\RecordInterface;
 class RecordController extends Controller
