@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@mail.com',
             'password' => '$2y$10$Q748xkIoXoKaFu1.hjFh6ONjHgpHp864f9akLmk33WlsTIsnTNn76', //B1tchpl3as3@!
-            'is_admin' => 1
         ]);
     }
 }
