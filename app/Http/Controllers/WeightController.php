@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Weight;
+use App\Models\Weight;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\WeightInterface;
 

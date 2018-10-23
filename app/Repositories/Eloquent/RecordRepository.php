@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 use App\Repositories\Contracts\RecordInterface;
-use App\Record;
+use App\Models\Record;
 use Auth;
 class RecordRepository implements RecordInterface
 {
