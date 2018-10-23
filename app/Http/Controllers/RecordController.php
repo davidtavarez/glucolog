@@ -31,9 +31,9 @@ class RecordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fecha' => 'required',
-            'medida' => 'required',
-            'ayuno' => 'required'
+            'date' => 'required',
+            'measure' => 'required',
+            'is_in_fast' => 'required'
         ]);
         $this->recordRepository->store($request);
 

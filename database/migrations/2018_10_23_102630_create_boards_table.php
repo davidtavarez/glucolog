@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeightsTable extends Migration
+class CreateBoardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateWeightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('weights', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->date('date');
-            $table->integer('weight');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateWeightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weights');
+        Schema::dropIfExists('boards');
     }
 }
