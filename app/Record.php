@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Record extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'records';
-    protected $fillable = ['fecha', 'comida', 'medida', 'ayuno', 'comentario','user_id','tipo_comida'];
+    protected $fillable = ['date', 'food', 'measure', 'is_in_fast', 'comment','user_id','food_type'];
+    protected $dates = ['deleted_at'];
 
     public function path()
     {
