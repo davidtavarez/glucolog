@@ -18,54 +18,46 @@
                 <div class="form-group row col-sm-12">
                     <div class="col-sm-4">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" name="fecha" required>
+                        <input type="date" class="form-control" name="date" required>
                     </div>
                     <div class="col-sm-2">
                         <label for="date">Glicemia</label>
-                        <input type="number" name="medida" class="form-control" required>
+                        <input type="number" name="measure" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group row col-sm-12">
-                    <div class="col-sm-2">
-                        <label>¿Está en ayuno?</label>
+                    <div class="col-sm-10">
+                        <label>Condición:</label>
                         <br>
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="ayuno" value="1" type="radio">
-                            <span class="css-control-indicator"></span> Si
+                            <input class="css-control-input" name="condition" value="1" type="radio" checked required>
+                            <span class="css-control-indicator"></span> Basal y antes de las comidas
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="ayuno" value="0" type="radio" required>
-                            <span class="css-control-indicator"></span> No
-                        </label>
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Tipo de comida:</label>
-                        <br>
-                        <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Desayuno" type="radio">
-                            <span class="css-control-indicator"></span> Desayuno
+                            <input class="css-control-input" name="condition" value="2" type="radio" required>
+                            <span class="css-control-indicator"></span> 2 horas poscomida
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Almuerzo" type="radio" required>
-                            <span class="css-control-indicator"></span> Almuerzo
+                            <input class="css-control-input" name="condition" value="3" type="radio" required>
+                            <span class="css-control-indicator"></span> Antes de dormir
                         </label>
 
                         <label class="css-control css-control-primary css-radio">
-                            <input class="css-control-input" name="tipo_comida" value="Cena" type="radio" required>
-                            <span class="css-control-indicator"></span> Cena
+                            <input class="css-control-input" name="condition" value="4" type="radio" required>
+                            <span class="css-control-indicator"></span> De madrugada
                         </label>
                     </div>
                 </div>
                 <div class="form-group row col-sm-12">
-                    <div class="col-sm-4">
-                        <label for="date">¿Que comió?</label>
-                        <textarea name="comida" cols="20" rows="2" class="form-control"></textarea>
-                    </div>
                     <div class="col-sm-4">
                         <label for="date">Comentario</label>
-                        <textarea name="comentario" cols="20" rows="2" class="form-control"></textarea>
+                        <textarea name="comment" cols="20" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-4 food" style="display:none;">
+                        <label for="date">¿Que comió?</label>
+                        <textarea name="food" cols="20" rows="2" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -84,4 +76,18 @@
         @endif
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$('input[type="radio"]').click(function () {
+    if ($(this).attr("value") !== "2") {
+        $(".food").hide('slow');
+    }
+    if ($(this).attr("value") == "2") {
+        $(".food").show('slow');
+    }
+});
+
+</script>
 @endsection

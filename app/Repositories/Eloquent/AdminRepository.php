@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 use App\Repositories\Contracts\AdminInterface;
-use App\User;
+use App\Models\User;
 
 class AdminRepository implements AdminInterface
 {

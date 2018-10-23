@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\AdminInterface;
-use App\User;
+use App\Models\User;
 class AdminController extends Controller
 {
     protected $adminRepository;

@@ -17,15 +17,15 @@
         <div class="row">
             <div class="col-sm-4">
                 <label>Fecha:</label>
-                <p>{{$record->fecha}}</p>
+                <p>{{$record->date}}</p>
             </div>
             <div class="col-sm-2">
                 <label>Toma:</label>
-                <p>{{$record->medida}} mg/dL</p>
+                <p>{{$record->measure}} mg/dL</p>
             </div>
             <div class="col-sm-3">
                 <label>¿Estaba en ayuno?:</label>
-                @if($record->ayuno === True)
+                @if($record->is_in_fast === True)
                 <p>Si</p>
                 @else
                 <p>No</p>
@@ -33,11 +33,11 @@
             </div>
             <div class="col-sm-4">
                 <label>¿Que comió?</label>
-                <p>{{$record->comida}}</p>
+                <p>{{$record->food}}</p>
             </div>
             <div class="col-sm-4">
                 <label>Comentario:</label>
-                <p>{{$record->comentario}}</p>
+                <p>{{$record->comment}}</p>
             </div>
         </div>
     </div>
