@@ -16,6 +16,7 @@ class CreateWeightsTable extends Migration
         Schema::create('weights', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('board_id')->unsigned();
             $table->date('date');
             $table->integer('weight');
             $table->softDeletes();
