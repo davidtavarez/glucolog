@@ -39,6 +39,7 @@
     <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/plugins/datatables/datatable.js')}}"></script>
+    @yield('scripts')
 
 </body>
 </html>
