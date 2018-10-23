@@ -6,7 +6,7 @@
                 <small>{{date('d/m/Y')}}</small>
             </h3>
             <div class="block-options">
-                <a href="/records/create" class="btn-block-option">Registrar Medida <i class="si si-drop"></i></a>
+                <a href="/records/create" class="btn-block-option">Registrar Nivel Glicemia <i class="si si-drop"></i></a>
             </div>
         </div>
         <div class="block-content">
@@ -14,22 +14,22 @@
              @if($record->medida > 180 || $record->medida < 70)
              <div class="col-md-10">
                 <div class="alert alert-danger" role="alert">
-                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->fcreated()}}</h3>
+                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->created_at->format('h:i A')}}</h3>
                     <p class="mb-0"><b>Comida:</b> @if($record->comida === null)
                         Estaba en ayuno 
                         @else 
-                        {{$record->comida}}
+                        {{$record->comida}} - {{$record->tipo_comida}}
                         @endif <b>Medida: </b><span class="alert-heading font-size-h4 font-w300">{{$record->medida}}</span></p>
                 </div>
             </div>
             @else
             <div class="col-md-10">
                 <div class="alert alert-success" role="alert">
-                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->fcreated()}}</h3>
+                    <h3 class="alert-heading font-size-h4 font-w400">{{$record->created_at->format('h:i A')}}</h3>
                     <p class="mb-0"><b>Comida:</b> @if($record->comida === null)
                         Estaba en ayuno 
                         @else 
-                        {{$record->comida}}
+                        {{$record->comida}} - {{$record->tipo_comida}}
                         @endif <b>Medida: </b><span class="alert-heading font-size-h4 font-w300">{{$record->medida}}</span></p>
                 </div>
             </div>

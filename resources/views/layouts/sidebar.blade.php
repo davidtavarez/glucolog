@@ -71,14 +71,14 @@
                                 <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                                         <i class="si si-drop"></i>
-                                        <span class="sidebar-mini-hide">Medidas</span>
+                                        <span class="sidebar-mini-hide">Nivel de Glicemia</span>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="/records/create">Registrar Medida</a>
+                                            <a href="/records/create">Registrar nivel de glicemia</a>
                                         </li>
                                         <li>
-                                            <a href="/records">Historial de medidas</a>
+                                            <a href="/records">Historial</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -90,10 +90,10 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="/pesos/create">Registrar Peso</a>
+                                                <a href="/weights/create">Registrar Peso</a>
                                             </li>
                                             <li>
-                                                <a href="/pesos">Historial de peso</a>
+                                                <a href="/weights">Historial de peso</a>
                                             </li>
                                         </ul>
                                     </li>

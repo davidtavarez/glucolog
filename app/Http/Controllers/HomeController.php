@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Record;
 class HomeController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $records = Record::latest()->get();
+        $records = Record::orderby('date', 'desc')->get();
         return view('home', compact('records'));
     }
 }
