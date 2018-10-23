@@ -16,4 +16,14 @@ class Board extends Model
     {
         return $this->hasMany('App\Models\User');
     }
+
+    public function records()
+    {
+        return $this->hasMany('App\Models\Record');
+    }
+
+    public function weights()
+    {
+        return $this->hasMany('App\Models\Weight');
+    }
 }
