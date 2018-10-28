@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Board;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -56,6 +57,7 @@ class RegisterController extends Controller
             'birthday' => 'required|date',
             'detection_date' => 'required|date',
             'diabetes' => ['required', 'string', Rule::in(['1', '2'])],
+            'sex' => ['required', 'string', Rule::in(['Male', 'Female'])],
         ]);
     }
 
@@ -67,10 +69,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $board = Board::create(['name' => $data['email']."'s dashboard'"]);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'birthday' => $data['birthday'],
+            'detection_date' => $data['detection_date'],
+            'diabetes' => $data['diabetes'],
+            'board_id' => $board->id
         ]);
     }
 }
