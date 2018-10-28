@@ -10,4 +10,4 @@ El código es totalmente Open Source, puede ser descargado e instalado por cualq
 
 ## Quiero colaborar ¿Cómo lo hago?
 
-La mejor forma de colaborar es compartiendo la información sobre GlucoLog. También puede reportar cualquier fallo en éste repositorio. Si eres diseñador o desarrollador, puede colocar un Pull Request, no sin antes abrir un **issue** con la propuesta.
+La mejor forma de colaborar es compartiendo la información sobre GlucoLog. También puede reportar cualquier fallo en éste repositorio. Si eres diseñador o desarrollador, puede colocar un Pull Request, no sin antes abrir un **issue** con la propuesta. Incluso puede escribir diferenes páginas en el [Wiki](https://github.com/davidtavarez/glucolog/wiki).
