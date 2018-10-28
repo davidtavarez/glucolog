@@ -1,14 +1,8 @@
-@extends('layouts.master') @section('title', 'Crear Rol') @section('content')
+@extends('layouts.master') 
+@section('title', 'Crear Rol') 
+@section('content')
 <div class="col-12">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+@include('flash::message')
     <form class="card" action="{{ route('roles.store') }}" method="post">
         <div class="card-status card-status-left bg-blue"></div>
         {{ csrf_field() }}
@@ -50,3 +44,10 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+@endsection

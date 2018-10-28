@@ -1,17 +1,17 @@
-@extends('layouts.master') @section('title', 'Editar Rol') @section('content')
+@extends('layouts.master') 
+@section('title', 'Editar Rol')
+@section('content')
 <div class="col-12">
-    @if ($errors->any())
+@if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-    @endif
+@endif
     <div class="card">
-        <div class="card-status card-status-left bg-blue"></div>
-
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fe fe-lock"></i> Editar Rol</h3>
@@ -63,3 +63,4 @@
         </div>
     </div>
 </div>
+@endsection
