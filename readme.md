@@ -1,4 +1,4 @@
-
+## GlucoLog [![Build Status](https://travis-ci.org/davidtavarez/glucolog.svg?branch=master)](https://travis-ci.org/davidtavarez/glucolog)
 
 ## ¿Qué es GlucoLog?
 
