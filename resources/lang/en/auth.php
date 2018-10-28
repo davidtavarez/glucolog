@@ -16,4 +16,20 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'login' => 'Login',
+    'email' => 'E-Mail Address',
+    'password' => 'Password',
+    'remember-me' => 'Remember Me',
+    'forgot-password' => 'Forgot Password?',
+
+    'register' => 'Register',
+    'name' => 'Kid\'s full name',
+    'confirm-password' => 'Confirm Password',
+
+    'birthday' => 'Birthday',
+    'diabetes' => 'Diabetes',
+    'detection_date' => 'Detection Date',
+
+    'type_one' => 'Type 1',
+    'type_two' => 'Type 2'
 ];

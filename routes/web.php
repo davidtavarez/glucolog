@@ -6,6 +6,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index');
+    Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
+
 });
 
 Auth::routes(['verify' => true]);
