@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $records = \App\Models\Record::all();
+        return view('home', compact('records'));
     }
 }

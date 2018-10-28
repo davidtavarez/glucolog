@@ -1,15 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_user', 'is_admin'
+        'name', 'email', 'password', 'is_user', 'is_admin', 'board_id'
     ];
 
     /**
@@ -29,22 +31,25 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    protected $dates = ['deleted_at'];
+
+    public function board()
+    {
+        return $this->belongsTo('App\Models\Board');
+    }
+    
     public function records()
     {
-        return $this->hasMany('App\Record');
+        return $this->hasMany('App\Models\Record');
     }
 
     public function weights()
     {
-        return $this->hasMany('App\Weight');
+        return $this->hasMany('App\Models\Weight');
     }
 
     public function path()
     {
         return '/admin/' . $this->id . '/edit';
-    }
-
-    public function isAdmin(){
-        return (\Auth::check() && $this->is_admin === 1);
     }
 }

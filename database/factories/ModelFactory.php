@@ -19,8 +19,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
-        'is_admin' => 0,
-        'is_user' => 1
     ];
 });
 
@@ -29,12 +27,14 @@ $factory->define(App\Record::class, function (Faker $faker) {
         'user_id' => function() {
             return factory('App\User')->create()->id;
         },
-        'fecha' => $faker->date,
-        'ayuno' => $faker->boolean(0),
-        'comentario' => $faker->sentence,
-        'comida' => $faker->sentence,
-        'medida' => $faker->numberBetween(10,1000),
-        'tipo_comida' => 'Almuerzo'
+        'date' => $faker->date,
+        'is_in_fast' => $faker->boolean(0),
+        'comment' => $faker->sentence,
+        'condition' => $faker->numberBetween(1, 4),
+        'status' => $faker->sentence,
+        'food' => $faker->sentence,
+        'measure' => $faker->numberBetween(10,1000),
+        'food_type' => 'Almuerzo'
     ];
 });
 
@@ -45,5 +45,12 @@ $factory->define(App\Weight::class, function (Faker $faker) {
         },
         'date' => $faker->date,
         'weight' => $faker->numberBetween(70,150)
+    ];
+});
+
+$factory->define(App\Models\Board::class, function (Faker $faker) {
+    return [
+        'name' => $faker->sentence,
+        'description' => $faker->paragraph,
     ];
 });

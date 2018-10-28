@@ -1,33 +1,11 @@
 <?php
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('weights', 'WeightController');
+    Route::resource('records', 'RecordController');
 
-Route::group(['middleware' => ['User']], function () {
-    Route::get('/weights/create', 'WeightController@create');
-    Route::post('/weights', 'WeightController@store');
-
-    Route::get('/records/create', 'RecordController@create');
-    Route::post('/records', 'RecordController@store');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index');
 });
 
-Route::get('/','HomeController@index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/records', 'RecordController@index');
-Route::get('/weights', 'WeightController@index');
-
-Route::get('/records/{record}', 'RecordController@show');
-
-Route::get('/admin', 'AdminController@index');
-Route::get('/admin/create', 'AdminController@create');
-Route::post('/admin', 'AdminController@store');
-Route::get('/admin/{user}/edit', 'AdminController@edit');
-Route::put('/admin/{user}', 'AdminController@update');
-Route::delete('/admin/{user}', 'AdminController@destroy');
-
 Auth::routes(['verify' => true]);
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
