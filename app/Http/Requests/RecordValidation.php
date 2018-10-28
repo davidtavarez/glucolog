@@ -27,7 +27,7 @@ class RecordValidation extends FormRequest
             'date' => 'required',
             'time' => 'required',
             'measure' => 'required',
-            'condition' => 'required'
+            'condition' => ['required', 'string', Rule::in(['1', '2'])]
         ];
     }
 }
