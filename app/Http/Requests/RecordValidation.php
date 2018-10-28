@@ -25,6 +25,7 @@ class RecordValidation extends FormRequest
     {
         return [
             'date' => 'required',
+            'time' => 'required',
             'measure' => 'required',
             'condition' => 'required'
         ];

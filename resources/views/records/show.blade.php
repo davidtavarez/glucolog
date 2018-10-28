@@ -32,10 +32,6 @@
                 @endif
             </div>
             <div class="col-sm-4">
-                <label>¿Que comió?</label>
-                <p>{{$record->food}}</p>
-            </div>
-            <div class="col-sm-4">
                 <label>Comentario:</label>
                 <p>{{$record->comment}}</p>
             </div>
