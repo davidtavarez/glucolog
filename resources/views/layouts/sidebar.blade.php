@@ -42,7 +42,7 @@
                         <div class="content-side content-side-full">
                             <ul class="nav-main">
                                 <li>
-                                    <a class="active" href="/home">
+                                    <a class="active" href="/records">
                                         <i class="si si-cup"></i>
                                         <span class="sidebar-mini-hide">Dashboard</span>
                                     </a>
@@ -61,7 +61,7 @@
                                             <a href="/records/create">Registrar nivel de glicemia</a>
                                         </li>
                                         <li>
-                                            <a href="/records">Historial</a>
+                                            <a href="/records/list">Historial</a>
                                         </li>
                                     </ul>
                                 </li>
