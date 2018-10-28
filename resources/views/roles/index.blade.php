@@ -1,8 +1,6 @@
 @extends('layouts.master') @section('title', 'Roles') @section('content')
 <div class="col-12">
-    @if(Session::has('flash_message'))
-    <p class="alert alert-{{ Session::get('class') }}">{{ Session::get('flash_message') }}</p>
-    @endif
+@include('flash::message')
     <div class="card">
         <div class="card-status card-status-left bg-blue"></div>
         <div class="card-header">
@@ -49,4 +47,10 @@
 
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 @endsection

@@ -44,10 +44,10 @@ class RoleRepository implements RoleInterface
     public function store($request)
     {
         $name = $request['name'];
-        $role = new Role();
-        $role->name = $name;
-        $role->institution_id = Auth::user()->institution_id;
-
+        $role = Role::create([
+            'name' => $request->name,
+            'board_id' => Auth::user()->board_id
+        ]);
         $permissions = $request['permissions'];
 
         $role->save();
@@ -58,10 +58,9 @@ class RoleRepository implements RoleInterface
             $role = Role::where('name', '=', $name)->first();
             $role->givePermissionTo($p);
         }
+        flash('Role creado exitosamente.')->success();
 
-        return redirect()->route('roles.index')
-            ->with(['flash_message' =>
-                'Rol ' . $role->name . ' agregado!', 'class' => 'success']);
+        return redirect()->route('roles.index');
     }
 
     public function update($request, $role)
@@ -80,19 +79,16 @@ class RoleRepository implements RoleInterface
             $p = Permission::where('id', '=', $permission)->firstOrFail(); //Get corresponding form //permission in db
             $role->givePermissionTo($p); //Assign permission to role
         }
+        flash('Role actualizado exitosamente.')->success();
 
-        return redirect()->route('roles.index')
-            ->with(['flash_message' =>
-                'Rol ' . $role->name . ' actualizado!', 'class' => 'success']);
+        return redirect()->route('roles.index');
 
     }
 
     public function destroy($role)
     {
         $role->delete();
-
-        return redirect()->route('roles.index')
-            ->with(['flash_message' =>
-                'Role eliminado correctamente!', 'class' => 'success']);
+        flash('Role eliminado exitosamente.')->success();
+        return redirect()->route('roles.index');
     }
 }
