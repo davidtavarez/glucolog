@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Board;
 use App\Models\User;
-use App\Notifications\Welcome;
 use App\Repositories\Contracts\UserInterface;
 use Auth;
 use Spatie\Permission\Models\Role;
@@ -36,17 +35,16 @@ class UserRepository implements UserInterface
 
     public function store($request)
     {
-        /* $password = str_random(8);
+        $password = str_random(8);
         $user = User::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'firstname' => $request->firstname,
-            'password' => bcrypt($password),
-            'lastname' => $request->lastname,
-            'jobtitle' => $request->jobtitle,
-            'board_id' => $request->board_id,
-            'cellphone' => $request->cellphone,
-            'phone' => $request->phone,
-        ]); */
+            'password' => bcrypt($request->password),
+            'birthday' => $request->birthday,
+            'detection_date' => $request->detection_date,
+            'diabetes' => $request->diabetes,
+            'board_id' => Auth::user()->board_id,
+        ]);
 
         $roles = $request->roles; //retrieving the roles field
 
@@ -66,25 +64,22 @@ class UserRepository implements UserInterface
         //create a new token to be sent to the user.
         $token = app('auth.password.broker')->createToken($user);
 
-        $user->notify(new Welcome($token));
+        //$user->notify(new Welcome($token));
         //Redirect to the users.index view and display message
-        return redirect()->route('users.index')
-            ->with(['flash_message' =>
-                'Usuario creado correctamente.', 'class' => 'success']);
+        flash('Usuario creado exitosamente.')->success();
+
+        return redirect()->route('users.index');
     }
 
     public function update($request, $user)
     {
-        /* $input = $request->only(['firstname', 'lastname', 'jobtitle', 'board_id', 'email', 'cellphone', 'phone', 'new_password']);
-
         $roles = $request->roles;
 
-        $user->firstname = $input['firstname'];
-        $user->lastname = $input['lastname'];
-        $user->jobtitle = $input['jobtitle'];
-        $user->board_id = $input['board_id'];
-        $user->phone = $input['phone'];
-        $user->cellphone = $input['cellphone']; */
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->detection_date = $request->detection_date;
+        $user->diabetes = $request->diabetes;
         if ($request->new_password !== null) {
             $user->password = bcrypt($request->new_password);
         }
@@ -100,9 +95,8 @@ class UserRepository implements UserInterface
         } else {
             $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
         }
-        return redirect()->route('users.index')
-            ->with(['flash_message' =>
-                'Usuario editado correctamente.', 'class' => 'success']);
+        flash('Usuario actualizado exitosamente.')->success();
+        return redirect()->route('users.index');
     }
 
     public function edit($user)
@@ -121,9 +115,7 @@ class UserRepository implements UserInterface
     public function destroy($user)
     {
         $user->delete();
-
-        return redirect()->route('users.index')
-            ->with(['flash_message' =>
-                'Usuario eliminado correctamente.', 'class' => 'success']);
+        flash('Usuario eliminado exitosamente.')->success();
+        return redirect()->route('users.index');
     }
 }
