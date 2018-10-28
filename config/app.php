@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'GlucoLog'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +162,8 @@ return [
         App\Repositories\Providers\RecordProvider::class,
         App\Repositories\Providers\WeightProvider::class,
         App\Repositories\Providers\AdminProvider::class,
+        App\Repositories\Providers\RoleProvider::class,
+        App\Repositories\Providers\UserProvider::class,
 
     ],
 
