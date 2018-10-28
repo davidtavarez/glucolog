@@ -22,10 +22,9 @@ class RecordRepository implements RecordInterface
         Record::create([
             'user_id' => Auth::user()->id,
             'board_id' => Auth::user()->board_id,
-            'date' => $request->date,
+            'date' =>  Carbon::parse($request->date .' '.$request->time),
             'status' => $this->validateCondition($request),
             'comment' => $request->comment,
-            'food' => $request->food,
             'measure' => $request->measure,
             'condition' => $request->condition,
         ]);

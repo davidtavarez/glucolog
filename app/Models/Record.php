@@ -11,7 +11,7 @@ class Record extends Model
     use SoftDeletes;
 
     protected $table = 'records';
-    protected $fillable = ['date', 'food', 'measure', 'status', 'comment','user_id','condition', 'board_id'];
+    protected $fillable = ['date', 'measure', 'status', 'comment','user_id','condition', 'board_id'];
     protected $dates = ['deleted_at'];
 
     public function path()
