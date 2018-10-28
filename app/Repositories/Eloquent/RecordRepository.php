@@ -5,15 +5,18 @@ namespace App\Repositories\Eloquent;
 use App\Models\Record;
 use App\Repositories\Contracts\RecordInterface;
 use Auth;
+use Carbon\Carbon;
 
 class RecordRepository implements RecordInterface
 {
     public function index()
     {
-        $records = Record::where('board_id', Auth::user()->board_id)->paginate(15);
+        $from = Carbon::now()->subDays(7);
+
+        $records = Record::where('board_id', Auth::user()->board_id)->where('date', '>', $from)->get();
         return view('records.index', compact('records'));
     }
-    
+
     public function store($request)
     {
         Record::create([
@@ -34,80 +37,60 @@ class RecordRepository implements RecordInterface
     {
         $measure = $request->measure;
         $condition = (int)$request->condition;
-        //Before eat
-        if($condition === 1) {
-            if($measure >= 65 && $measure <= 100){
-                return 'Ideal';
+
+        // Antes de comida
+        if ($condition === 1) {
+            if ($measure < 40) {
+                return 'Muy baja';
             }
 
-            if($measure >= 70 && $measure <= 145){
+            else if ($measure > 40 && $measure < 70) {
+                return 'Baja pero Aceptable';
+            }
+
+            else if ($measure >= 70 && $measure < 90) {
                 return 'Buen control';
             }
 
-            if($measure < 70 || ($measure > 145 && $measure <= 162)){
-                return 'Aceptable';
-            }
-
-            if($measure > 162){
-                return 'Mal control';
-            }
-        }
-
-        //After eat
-        if($condition === 2) {
-            if($measure >= 80 && $measure <= 126){
+            else if ($measure >= 90 && $measure < 110) {
                 return 'Ideal';
             }
 
-            if($measure >= 90 && $measure <= 180){
-                return 'Buen control';
+            else if ($measure >= 110 && $measure < 170) {
+                return 'Alta pero Aceptable';
             }
 
-            if($measure < 70 || ($measure > 200 && $measure <= 250)){
-                return 'Aceptable';
-            }
-
-            if($measure > 250){
-                return 'Mal control';
+            else if ($measure >= 170) {
+                return 'Muy Alta';
             }
         }
 
-        //Before sleep
-        if($condition === 3) {
-            if($measure >= 80 && $measure <= 100){
+        // 2 Horas pos-comida
+        if ($condition === 2) {
+            if ($measure < 70) {
+                return 'Muy baja';
+            }
+
+            else if ($measure > 70 && $measure < 90) {
+                return 'Baja pero Aceptable';
+            }
+
+            else if ($measure >= 90 && $measure < 100) {
+                return 'Buen control';
+            }
+
+            else if ($measure >= 100 && $measure < 140) {
                 return 'Ideal';
             }
 
-            if($measure >= 120 && $measure <= 180){
-                return 'Buen control';
+            else if ($measure >= 140 && $measure < 210) {
+                return 'Alta pero Aceptable';
             }
 
-            if(($measure > 80 && $measure <= 120) || ($measure > 180 && $measure <= 200)){
-                return 'Aceptable';
-            }
-
-            if($measure < 80 || $measure > 200){
-                return 'Mal control';
+            else if ($measure >= 210) {
+                return 'Muy Alta';
             }
         }
 
-        //Early Morning
-        if($condition === 4) {
-            if($measure >= 65 && $measure <= 100){
-                return 'Ideal';
-            }
-
-            if($measure >= 80 && $measure <= 162){
-                return 'Buen control';
-            }
-
-            if(($measure > 70 && $measure <= 80) || ($measure > 162 && $measure <= 200)){
-                return 'Aceptable';
-            }
-
-            if($measure < 70 || $measure > 200){
-                return 'Mal control';
-            }
-        }
     }
 }
