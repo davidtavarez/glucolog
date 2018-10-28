@@ -27,6 +27,7 @@ class CreatePermissionTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('guard_name');
+            $table->integer('board_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
