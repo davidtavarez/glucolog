@@ -2,7 +2,7 @@
 
 ## ¿Qué es GlucoLog?
 
-Glucolog es una aplicación para registrar y dar seguimiento a los niveles de glicemia, orientado para niños menores de 14 años. Al darse de alta en el sistema, el padre o tutor del niño, coloca su información básica del niño y registra una cuenta de sólo lectura para el médico titular.
+Glucolog es una aplicación para registrar y dar seguimiento a los niveles de glucemia, orientado para niños menores de 14 años. Al darse de alta en el sistema, el padre o tutor del niño, coloca su información básica del niño y registra una cuenta de sólo lectura para el médico titular.
 
 ## ¿Cómo puedo utilizar GlucoLog?
 

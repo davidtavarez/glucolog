@@ -92,4 +92,10 @@ class RecordRepository implements RecordInterface
         }
 
     }
+
+    public function list()
+    {
+        $records = Record::where('board_id', Auth::user()->board_id)->get();
+        return view('records.list', compact('records'));
+    }
 }
