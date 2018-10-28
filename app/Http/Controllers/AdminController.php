@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\AdminInterface;
 use App\Models\User;
+use App\Http\Requests\UserAccountValidation;
+
 class AdminController extends Controller
 {
     protected $adminRepository;
@@ -27,13 +29,8 @@ class AdminController extends Controller
         return view('admin.create');
     }
 
-    public function store(Request $request)
+    public function store(UserAccountValidation $request)
     {
-        $this->validate($request, [
-            'name'=>'required|max:120',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|confirmed'
-        ]);
         $this->adminRepository->store($request);
 
         return redirect('/admin');
