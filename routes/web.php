@@ -13,12 +13,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('weights', 'WeightController');
 
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'RecordController@index');
 
 
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
 
+    Route::prefix('profile')->group(function () {
+        Route::get('/', 'UserController@profile')->name('profile.show');
+        Route::post('/', 'UserController@edit_profile')->name('profile.store');
+    });
 });
 
 Auth::routes(['verify' => true]);

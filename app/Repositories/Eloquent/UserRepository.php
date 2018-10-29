@@ -118,4 +118,23 @@ class UserRepository implements UserInterface
         flash('Usuario eliminado exitosamente.')->success();
         return redirect()->route('users.index');
     }
+
+    public function edit_profile($request)
+    {
+        $user = Auth::user();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->detection_date = $request->detection_date;
+        $user->diabetes = $request->diabetes;
+        $user->sex = $request->sex;
+        if ($request->password !== null) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->update();
+
+        flash('Usuario actualizado exitosamente.')->success();
+        return redirect()->back();
+    }
 }
