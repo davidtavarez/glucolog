@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Http\Requests\UserValidation;
+use App\Http\Requests\ProfileValidation;
+
+use App\Models\User;
 use App\Repositories\Contracts\UserInterface;
+use Auth;
+
 
 class UserController extends Controller
 {
     protected $user;
+
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
@@ -48,5 +52,17 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         return $this->user->destroy($user);
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return view('users.profile', compact('user'));
+    }
+
+    public function edit_profile(ProfileValidation $request)
+    {
+        return $this->user->edit_profile($request);
     }
 }

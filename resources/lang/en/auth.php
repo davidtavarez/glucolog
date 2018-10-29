@@ -31,5 +31,13 @@ return [
     'detection_date' => 'Detection Date',
 
     'type_one' => 'Type 1',
-    'type_two' => 'Type 2'
+    'type_two' => 'Type 2',
+
+    'sex' => 'Biological sex',
+    'male' => 'Male',
+    'female' => 'Female',
+
+    'profile' => 'Profile',
+
+    'save' => 'Save'
 ];
