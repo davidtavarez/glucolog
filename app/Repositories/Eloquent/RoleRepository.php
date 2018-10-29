@@ -14,7 +14,7 @@ class RoleRepository implements RoleInterface
         if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
             $roles = Role::get();
         } else {
-            $roles = Role::where('institution_id', '=', Auth::user()->institution_id)->get();
+            $roles = Role::where('board_id', '=', Auth::user()->board_id)->get();
         }
 
         return view('roles.index', compact('roles'));
