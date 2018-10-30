@@ -13,7 +13,7 @@ class RecordRepository implements RecordInterface
     {
         $from = Carbon::now()->subDays(7);
 
-        $records = Record::where('board_id', Auth::user()->board_id)->where('date', '>', $from)->get();
+        $records = Record::where('board_id', Auth::user()->board_id)->where('date', '>=', $from)->get();
         return view('records.index', compact('records'));
     }
 
