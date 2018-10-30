@@ -36,4 +36,8 @@ class RecordController extends Controller
         return view('records.show', compact('record'));
     }
 
+    public function list()
+    {
+        return $this->repo->list();
+    }
 }

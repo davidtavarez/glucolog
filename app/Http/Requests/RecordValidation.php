@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RecordValidation extends FormRequest
 {
@@ -25,8 +26,9 @@ class RecordValidation extends FormRequest
     {
         return [
             'date' => 'required',
+            'time' => 'required',
             'measure' => 'required',
-            'condition' => 'required'
+            'condition' => ['required', 'string', Rule::in(['1', '2'])]
         ];
     }
 }

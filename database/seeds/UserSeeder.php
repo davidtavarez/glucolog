@@ -23,7 +23,22 @@ class UserSeeder extends Seeder
             'password' => '$2y$10$Q748xkIoXoKaFu1.hjFh6ONjHgpHp864f9akLmk33WlsTIsnTNn76', //B1tchpl3as3@!
         ]);
 
-        $allPermissions = ['Super Admin','Crear medida', 'Borrar medida', 'Crear peso', 'Editar peso', 'Borrar peso', 'Crear usuario', 'Editar usuario', 'Borrar usuario'];
+        $allPermissions = ['Super Admin',
+            'Crear medida',
+            'Ver medida',
+            'Borrar medida',
+            'Crear peso',
+            'Ver peso',
+            'Editar peso',
+            'Borrar peso',
+            'Crear usuario',
+            'Editar usuario',
+            'Borrar usuario',
+            'Ver usuario',
+            'Crear rol',
+            'Editar rol',
+            'Borrar rol',
+        ];
 
         $role = Role::create(['name' => 'Super Admin']);
         $user->assignRole($role);

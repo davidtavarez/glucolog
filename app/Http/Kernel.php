@@ -62,5 +62,9 @@ class Kernel extends HttpKernel
         'User' => \App\Http\Middleware\User::class, 
         'vefified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'record' => \App\Http\Middleware\RecordMiddleware::class,
+        'user' => \App\Http\Middleware\UserMiddleware::class,
+        'weight' => \App\Http\Middleware\WeightMiddleware::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
 }
