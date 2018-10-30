@@ -17,7 +17,7 @@ class CreateRecordsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('board_id')->unsigned();
-            $table->date('datetime');
+            $table->date('date');
             $table->text('comment')->nullable();
             $table->tinyInteger('condition');
             $table->string('status');
