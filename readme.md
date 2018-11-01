@@ -34,4 +34,12 @@ La mejor forma de colaborar es compartiendo la información sobre GlucoLog. Tamb
 
 ![Records](https://raw.githubusercontent.com/davidtavarez/glucolog/master/screenshots/weight.png)
 
+## Colaboradores
+
+[Nelson Romero](https://github.com/nromero125)
+
+[David Tavarez](https://github.com/davidtavarez)
+
+[Clovis Ramírez](https://github.com/clovis1122)
+
 
