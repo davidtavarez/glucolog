@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Board;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class RegisterController extends Controller
 {
     /*
@@ -21,7 +22,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -69,16 +70,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $board = Board::create(['name' => $data['email']."'s dashboard'"]);
+        $board = Board::create(['name' => $data['email'] . "'s dashboard'"]);
 
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'birthday' => $data['birthday'],
             'detection_date' => $data['detection_date'],
             'diabetes' => $data['diabetes'],
-            'board_id' => $board->id
+            'board_id' => $board->id,
         ]);
+
+        $role = Role::where('name', 'Administrator')->first();
+        $user->assignRole($role);
+        return $user;
     }
 }

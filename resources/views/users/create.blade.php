@@ -86,10 +86,6 @@
                     <div class="form-group">
                         <div class="form-label">
                             <i class="fe fe-lock"></i> Roles
-                            @if(Auth::user() && Auth::user()->hasPermissionTo('Super Admin') ||
-                            Auth::user()->hasPermissionTo('Agregar roles'))
-                            <small><a href="/roles/create" class="badge badge-info">Crear rol ?</a></small>
-                            @endif
                         </div>
                         <div class="custom-controls-stacked">
                             @foreach ($roles as $role)

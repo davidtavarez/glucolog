@@ -35,7 +35,6 @@ class UserRepository implements UserInterface
 
     public function store($request)
     {
-        $password = str_random(8);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
