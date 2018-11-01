@@ -23,7 +23,8 @@ class UserSeeder extends Seeder
             'password' => '$2y$10$Q748xkIoXoKaFu1.hjFh6ONjHgpHp864f9akLmk33WlsTIsnTNn76', //B1tchpl3as3@!
         ]);
 
-        $allPermissions = ['Super Admin',
+        $allPermissions = [
+            'Super Admin',
             'Crear medida',
             'Ver medida',
             'Borrar medida',
@@ -37,14 +38,22 @@ class UserSeeder extends Seeder
             'Ver usuario',
             'Crear rol',
             'Editar rol',
+            'Ver rol',
             'Borrar rol',
         ];
-
+        //Super Admin
         $role = Role::create(['name' => 'Super Admin']);
         $user->assignRole($role);
         foreach ($allPermissions as $permission) {
             $perm = Permission::create(['name' => $permission]);
             $role->givePermissionTo($perm);
+        }
+
+        //Default Role
+        $defaultRole = Role::create(['name' => 'Administrator']);
+        $permissions = Permission::where('name', '!=', 'Super Admin')->get();
+        foreach ($permissions as $permission) {
+            $defaultRole->givePermissionTo($permission);
         }
     }
 }
