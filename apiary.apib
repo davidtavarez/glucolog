@@ -560,7 +560,7 @@ Sets user weight.
 
 ### Delete user weight [DELETE /users/me/weight/{id}]
 
-Delet a weight record
+Deletes a weight record
 
 **Endpoint information**
 
@@ -575,6 +575,71 @@ Delet a weight record
             Authorization: JWT <token>
 
 + Response 204
+
+### Generate user read only keys [GET /users/me/key]
+
+List read-only key
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes (array[Key])
+
+    
+### Generate user read only keys [POST /users/me/key]
+
+Generate read-only key
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+            
+    + Attributes
+        + name: 12 (string,required) - Name of the key.
+        
+
++ Response 201
+    + Attributes
+        + Key (Key) - Key
+
+### Delete user read only key [DELETE /users/me/key/{id}]
+
+Deletes a read only key
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204
+
 
 ## Users [/users]
 
@@ -671,6 +736,11 @@ Retrieves the current supported state.
 ## Entry (Resource)
 + user (User, required) - User
 + takenAt: `2015-09-10` (string, required) - Date when the entry was took.
+
+## Key (Resource)
++ user (User, required) - User
++ name: `Access to Doctors` (string, required) - Name
++ value: `SDFlks343` (string, required) - Key
 
 ## Weight (Entry)
 + value: 10 (number, required) - Kid's weight in kilogram.
