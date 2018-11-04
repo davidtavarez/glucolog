@@ -13,12 +13,10 @@ class UserRepository implements UserInterface
     public function index()
     {
         if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
-            $users = User::paginate(5);
+            return User::paginate(20);
         } else {
-            $users = User::where('board_id', '=', Auth::user()->board_id)->paginate(5);
+            return User::where('board_id', '=', Auth::user()->board_id)->paginate(20);
         }
-
-        return view('users.index', compact('users'));
     }
 
     public function create()
@@ -63,11 +61,7 @@ class UserRepository implements UserInterface
         //create a new token to be sent to the user.
         $token = app('auth.password.broker')->createToken($user);
 
-        //$user->notify(new Welcome($token));
-        //Redirect to the users.index view and display message
-        flash('Usuario creado exitosamente.')->success();
-
-        return redirect()->route('users.index');
+        return response()->json(['message' => 'Usuario creado exitosamente.', 'user' => $user], 201);
     }
 
     public function update($request, $user)
@@ -94,8 +88,8 @@ class UserRepository implements UserInterface
         } else {
             $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
         }
-        flash('Usuario actualizado exitosamente.')->success();
-        return redirect()->route('users.index');
+
+        return response()->json(['message' => 'Usuario actualizado exitosamente.', 'user' => $user]);
     }
 
     public function edit($user)
@@ -114,8 +108,7 @@ class UserRepository implements UserInterface
     public function destroy($user)
     {
         $user->delete();
-        flash('Usuario eliminado exitosamente.')->success();
-        return redirect()->route('users.index');
+        return response()->json(['message' => 'Usuario eliminado exitosamente.']);
     }
 
     public function edit_profile($request)
@@ -133,7 +126,6 @@ class UserRepository implements UserInterface
         }
         $user->update();
 
-        flash('Usuario actualizado exitosamente.')->success();
-        return redirect()->back();
+        return response()->json(['message' => 'Perfil actualizado exitosamente.']);
     }
 }
