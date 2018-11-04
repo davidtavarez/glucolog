@@ -476,6 +476,35 @@ Delet a glycemia record
 
 + Response 204
 
+### Add glycemia record picture [PATCH /users/me/glycemia/{id}]
+
+Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                       |
+|-------|---------| --------------------- |
+| `400` | `2001`  | File is too large     |
+| `400` | `2002`  | Unsupported file type |
+
++ Request (multipart/form-data)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes
+        + avatar: `https://...` (string) - Public download URL
+
+
+
 ## User weight [/users/me/weight]
 
 ### List all user's weights registered [GET]
@@ -643,4 +672,5 @@ Retrieves the current supported state.
 + value: 120 (string, required) - Kid's weight in kilogram.
 + time: `14:23:23` (string, required) - Time.
 + state (State, required) - Fasting or post-meal.
-+ comment: `Very good` (string, optional) - Comment.
++ comment: `Very good` (string, optional) - Comment. 
++ picture: `https://...` (string, optional) - Picture.
