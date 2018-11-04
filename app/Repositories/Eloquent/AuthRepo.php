@@ -7,6 +7,7 @@ use App\Models\Board;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Auth;
+use Carbon\Carbon;
 
 class AuthRepo implements AuthInterface
 {
@@ -36,10 +37,11 @@ class AuthRepo implements AuthInterface
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
+
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'Unauthorized'], 401);
+                'message' => 'Usuario o contraseña invalidos.'], 401);
         }
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
@@ -57,7 +59,7 @@ class AuthRepo implements AuthInterface
         ]);
     }
 
-    public function logout()
+    public function logout($request)
     {
         $request->user()->token()->revoke();
         return response()->json(['message' =>
