@@ -279,7 +279,9 @@ After successful registration a confirmation email MUST be sent to provided addr
         + detection: `2018-03-02` (string, required) - Diabetes detection date.
         + sex: `male` (string,required) - Kid's sex.
 
-+ Response 201
++ Response 201 (application/json)
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
 
 # Group User
 
@@ -411,6 +413,130 @@ Restores user avatar to the default one.
 
 + Response 204
 
+
+## User glycemia [/users/me/glycemia]
+
+### List all user's glycemia registered [GET]
+
+List all user's glycemia registered.
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | Yes |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (array[Glycemia])
+
+### Set user glycemia [POST]
+
+Sets user glycemia.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+            
+    + Attributes
+        + value: 12 (number,required) - Value.
+        + takenAt: `2018-03-02` (string,required) - Date.
+        + time: `14:20:12` (string,required) - Time.
+        + state (State,required) - State.
+
++ Response 201
+
+### Delete user glycemia [DELETE /users/me/glycemia/{id}]
+
+Delet a glycemia record
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204
+
+## User weight [/users/me/weight]
+
+### List all user's weights registered [GET]
+
+List all user's weights registered.
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | Yes |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (array[Weight])
+
+### Set user weight [POST]
+
+Sets user weight.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+            
+    + Attributes
+        + value: 12 (number,required) - Value.
+        + takenAt: `2018-03-02` (string,required) - Date.
+        
+
++ Response 201
+
+### Delete user weight [DELETE /users/me/weight/{id}]
+
+Delet a weight record
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204
+
 ## Users [/users]
 
 ### List all users [GET]
@@ -420,7 +546,7 @@ Returns a list of users. The users are returned in sorter order, with the most r
 |                         |     |
 |-------------------------|-----|
 | Requires authentication | Yes |
-| Has restricted scope    | No  |
+| Has restricted scope    | Yes |
 
 + Request
     + Headers
@@ -460,6 +586,32 @@ Retrieves the details of an existing user.
 
 + Response 404
 
+# Group Utils
+
+## Current supported states [/utils/state]
+
+When taking a glycemia record which state are supported by the system.
+
+### Retrieve current supported states [GET]
+
+Retrieves the current supported state.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (State)
+
+
 # Data Structures
 
 ## Resource (object)
@@ -473,6 +625,22 @@ Retrieves the details of an existing user.
 + password: `QXR0mi38a2` (string, required) - User password.
 + birhtday: `2015-09-10` (string, required) - Kid's birhtday.
 + diabetes: 1 (number, required) - Kid's diabetes type.
-+ detection: `2018-03-02` (string, required) - Diabetes detection date.
++ detectionDate: `2018-03-02` (string, required) - Diabetes detection date.
 + sex: `male` (string,required) - Kid's sex.
 + avatar (string, optional, nullable) - URL to user avatar.
+
+## Entry (Resource)
++ user (User, required) - User
++ takenAt: `2015-09-10` (string, required) - Date when the entry was took.
+
+## Weight (Entry)
++ value: 10 (number, required) - Kid's weight in kilogram.
+
+## State
++ value: `fasting` (string, required) - State.
+
+## Glycemia (Entry)
++ value: 120 (string, required) - Kid's weight in kilogram.
++ time: `14:23:23` (string, required) - Time.
++ state (State, required) - Fasting or post-meal.
++ comment: `Very good` (string, optional) - Comment.
