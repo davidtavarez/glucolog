@@ -1,0 +1,22 @@
+from flask import Flask
+from flask_jwt_extended import JWTManager
+
+VERSION = 1
+
+def create_app(config, version):
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_json(config)
+
+    from app import blueprint
+    app.register_blueprint(blueprint, url_prefix=f"/api/v{version}")
+
+    from models import db
+    db.init_app(app)
+
+    return app
+
+
+if __name__ == "__main__":
+    app = create_app("dev.json", VERSION)
+    jwt = JWTManager(app)
+    app.run(debug=True)
