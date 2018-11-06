@@ -45,4 +45,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('users', 'UserController')->middleware('user');
     Route::resource('roles', 'RoleController')->middleware('role');
     Route::resource('weights', 'WeightController')->middleware('weight');
+
+    //Get permissions
+    Route::get('/permissions', 'RoleController@getPermissions');
 });

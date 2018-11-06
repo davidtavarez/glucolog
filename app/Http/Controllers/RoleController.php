@@ -20,9 +20,9 @@ class RoleController extends Controller
         return $this->role->index();
     }
 
-    public function create()
+    public function getPermissions()
     {
-        return $this->role->create();
+        return $this->role->getPermissions();
     }
 
     public function store(RoleValidation $request)
