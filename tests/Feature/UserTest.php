@@ -11,16 +11,14 @@ class UserTest extends TestCase
 {
     use WithoutMiddleware, DatabaseMigrations, DatabaseTransactions;
     /**
-     * @test
+     * A basic test example.
+     *
+     * @return void
      */
-  /*   public function admin_can_create_other_users()
+    public function testBasicTest()
     {
-        $data = [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'secret',
-            'sex' => 'Male',
-        ];
+        $response = $this->get('/');
 
-    } */
+        $response->assertStatus(200);
+    }
 }
