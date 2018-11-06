@@ -5,40 +5,25 @@ use App\Repositories\Contracts\RoleInterface;
 use Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Validator;
 
 class RoleRepository implements RoleInterface
 {
     public function index()
     {
         if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
-            $roles = Role::get();
+            return Role::paginate(20);
         } else {
-            $roles = Role::where('board_id', '=', Auth::user()->board_id)->get();
+            return Role::where('board_id', '=', Auth::user()->board_id)->get();
         }
-
-        return view('roles.index', compact('roles'));
     }
 
-    public function create()
+    public function getPermissions()
     {
         if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
-            $permissions = Permission::all();
+            return Permission::all();
         } else {
-            $permissions = Permission::where('name', '!=', 'Super Admin')->get();
+            return Permission::where('name', '!=', 'Super Admin')->get();
         }
-
-        return view('roles.create', compact('permissions'));
-    }
-
-    public function edit($role)
-    {
-        if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
-            $permissions = Permission::all();
-        } else {
-            $permissions = Permission::where('name', '!=', 'Super Admin')->get();
-        }
-        return view('roles.edit', compact('role', 'permissions'));
     }
 
     public function store($request)
@@ -46,7 +31,7 @@ class RoleRepository implements RoleInterface
         $name = $request['name'];
         $role = Role::create([
             'name' => $request->name,
-            'board_id' => Auth::user()->board_id
+            'board_id' => Auth::user()->board_id,
         ]);
         $permissions = $request['permissions'];
 
@@ -58,9 +43,7 @@ class RoleRepository implements RoleInterface
             $role = Role::where('name', '=', $name)->first();
             $role->givePermissionTo($p);
         }
-        flash('Role creado exitosamente.')->success();
-
-        return redirect()->route('roles.index');
+        return response()->json(['message' => 'Role creado exitosamente.', 'role' => $role], 201);
     }
 
     public function update($request, $role)
@@ -79,16 +62,14 @@ class RoleRepository implements RoleInterface
             $p = Permission::where('id', '=', $permission)->firstOrFail(); //Get corresponding form //permission in db
             $role->givePermissionTo($p); //Assign permission to role
         }
-        flash('Role actualizado exitosamente.')->success();
-
-        return redirect()->route('roles.index');
+       
+        return response()->json(['message' => 'Role actualizado exitosamente.', 'role' => $role]);
 
     }
 
     public function destroy($role)
     {
         $role->delete();
-        flash('Role eliminado exitosamente.')->success();
-        return redirect()->route('roles.index');
+        return response()->json(['message' => 'Role eliminado exitosamente.']);
     }
 }

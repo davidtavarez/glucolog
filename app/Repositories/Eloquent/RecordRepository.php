@@ -12,14 +12,12 @@ class RecordRepository implements RecordInterface
     public function index()
     {
         $from = Carbon::now()->subDays(7);
-
-        $records = Record::where('board_id', Auth::user()->board_id)->where('date', '>=', $from)->get();
-        return view('records.index', compact('records'));
+        return Record::where('board_id', Auth::user()->board_id)->where('date', '>=', $from)->get();
     }
 
     public function store($request)
     {
-        Record::create([
+        $record = Record::create([
             'user_id' => Auth::user()->id,
             'board_id' => Auth::user()->board_id,
             'date' =>  Carbon::parse($request->date .' '.$request->time),
@@ -29,7 +27,7 @@ class RecordRepository implements RecordInterface
             'condition' => $request->condition,
         ]);
 
-        return redirect('/records');
+        return response()->json(['message' => 'Medida creada exitosamente.', 'record' => $record]);
     }
 
     public function validateCondition($request)
@@ -95,7 +93,6 @@ class RecordRepository implements RecordInterface
 
     public function list()
     {
-        $records = Record::where('board_id', Auth::user()->board_id)->get();
-        return view('records.list', compact('records'));
+        return Record::where('board_id', Auth::user()->board_id)->paginate(20);
     }
 }
