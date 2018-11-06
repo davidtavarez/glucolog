@@ -5,7 +5,7 @@ from schemas import Resource
 
 class User(Resource):
     name = fields.String()
-    email = fields.Email()
+    email = fields.String()
     birthday = fields.Date()
     diabetes = fields.String()
     detection = fields.Date()

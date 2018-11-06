@@ -1,7 +1,19 @@
+import enum
+
 from passlib.hash import pbkdf2_sha256 as sha256
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 
 from models import db, Resource
+
+
+class Sex(enum.Enum):
+    male = "male"
+    female = "female"
+
+
+class DiabetesType(enum.Enum):
+    one = "one"
+    two = "two"
 
 
 class User(Resource, db.Model):
@@ -16,8 +28,8 @@ class User(Resource, db.Model):
     _password = db.Column(db.String(60), nullable=False)
     birthday = db.Column(db.Date(), nullable=False)
     detection = db.Column(db.Date(), nullable=False)
-    sex = db.Enum('male', 'female', nullable=False)
-    diabetes = db.Enum('one', 'two', nullable=False)
+    sex = db.Column(db.String(), db.Enum(Sex), nullable=False)
+    diabetes = db.Column(db.String(), db.Enum(DiabetesType), nullable=False)
     avatar = db.Column(db.String(250), nullable=True)
 
     @hybrid_property
@@ -34,6 +46,10 @@ class User(Resource, db.Model):
         if cls.verifyHash(password, user.password):
             return user
         return None
+
+    @classmethod
+    def find(cls, email):
+        return  cls.query.filter_by(email=email).first()
 
     @hybrid_method
     def verifyHash(cls, password, hash):

@@ -3,9 +3,10 @@ import unittest
 from flask_jwt_extended import JWTManager
 
 from models import db
+from models.jwt import RevokedTokenModel
 from models.utils.state import State
 from run import create_app, VERSION
-from models.users.user import User as UserModel
+from models.users.user import User as UserModel, Sex, DiabetesType
 
 import datetime
 
@@ -21,10 +22,17 @@ class BaseTestCase(unittest.TestCase):
                              'email': 'testing@glucolog',
                              'password': '12345678',
                              'birthday': '2015-09-20',
-                             'sex': 'male',
-                             'diabetes': 'one',
+                             'sex': Sex.male.value,
+                             'diabetes': DiabetesType.one.value,
                              'detection': '2018-03-02'}
+
         jwt = JWTManager(self.app)
+
+        @jwt.token_in_blacklist_loader
+        def check_if_token_in_blacklist(decrypted_token):
+            jti = decrypted_token['jti']
+            return RevokedTokenModel.is_jti_blacklisted(jti)
+
         with self.app.app_context():
             db.drop_all()
             db.create_all()
