@@ -19,16 +19,13 @@ class UserRepository implements UserInterface
         }
     }
 
-    public function create()
+    public function getRoles()
     {
         if (Auth::user() && Auth::user()->hasPermissionTo('Super Admin')) {
-            $boards = Board::all();
-            $roles = Role::get();
+            return Role::get();
         } else {
-            $boards = Board::where('id', '=', Auth::user()->board_id)->get();
-            $roles = Role::where('id', '=', Auth::user()->board_id)->where('name', '!=', 'Super Admin')->get(); //Get all roles
+            return Role::where('id', '=', Auth::user()->board_id)->where('name', '!=', 'Super Admin')->get(); //Get all roles
         }
-        return view('users.create', compact('roles', 'boards'));
     }
 
     public function store($request)
