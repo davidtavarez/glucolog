@@ -164,6 +164,7 @@ return [
         App\Repositories\Providers\AdminProvider::class,
         App\Repositories\Providers\RoleProvider::class,
         App\Repositories\Providers\UserProvider::class,
+        App\Repositories\Providers\AuthProvider::class,
 
     ],
 

@@ -10,18 +10,18 @@ class WeightRepository implements WeightInterface
 {
     public function index()
     {
-        $weights = Weight::where('board_id', Auth::user()->board_id)->get();
-        return view('weight.index', compact('weights'));
+        return Weight::where('board_id', Auth::user()->board_id)->get();
     }
 
     public function store($request)
     {
-        Weight::create([
+        $weight = Weight::create([
             'user_id' => Auth::user()->id,
             'board_id' => Auth::user()->board_id,
             'weight' => $request->weight,
             'date' => $request->date,
         ]);
-        return redirect('/weights');
+        
+        return response()->json(['message' => 'Peso creado exitosamente.', 'weight' => $weight], 201);
     }
 }
