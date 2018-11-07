@@ -1,8 +1,10 @@
+import datetime
+
 from flask_jwt_extended import create_access_token
+from flask_restful import reqparse
 
 from models.users.user import User as UserModel
 from resources.auth import Authentication
-import datetime
 from schemas.users.user import User as UserSchema
 
 
