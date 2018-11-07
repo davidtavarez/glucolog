@@ -27,3 +27,4 @@ class AuthTestCase(BaseTestCase):
         res = self.client().post(f'{self.url}{Routes.auth_login}', data=json.dumps(login_data),
                                  content_type='application/json')
         self.assertEqual(res.status_code, 200)
+        self.assertIsNotNone(res.json.get('jwt', None))

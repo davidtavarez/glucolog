@@ -23,13 +23,13 @@ class User(Resource, db.Model):
         self.password = password
 
     __tablename__ = 'users'
-    name = db.Column(db.String(100), nullable=False, unique=False)
+    name = db.Column(db.String(100), nullable=True, unique=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
     _password = db.Column(db.String(60), nullable=False)
-    birthday = db.Column(db.Date(), nullable=False)
-    detection = db.Column(db.Date(), nullable=False)
-    sex = db.Column(db.String(), db.Enum(Sex), nullable=False)
-    diabetes = db.Column(db.String(), db.Enum(DiabetesType), nullable=False)
+    birthday = db.Column(db.Date(), nullable=True)
+    detection = db.Column(db.Date(), nullable=True)
+    sex = db.Column(db.String(), db.Enum(Sex), nullable=True)
+    diabetes = db.Column(db.String(), db.Enum(DiabetesType), nullable=True)
     avatar = db.Column(db.String(250), nullable=True)
 
     @hybrid_property
