@@ -5,3 +5,5 @@ class Routes(object):
     auth_register = '/auth/register'
 
     user_profile = '/users/me'
+
+    user_avatar = '/users/me/avatar'

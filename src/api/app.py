@@ -5,6 +5,7 @@ from resources.auth.register import Register
 from resources.auth.login import Login
 from resources.users.profile import Profile
 from resources.utils.state import States
+from resources.users.avatar import Avatar
 from routes import Routes
 
 blueprint = Blueprint(name='api', import_name=__name__)
@@ -16,3 +17,5 @@ api.add_resource(Login, Routes.auth_login)
 
 api.add_resource(States, Routes.utils_states)
 api.add_resource(Profile, Routes.user_profile)
+
+api.add_resource(Avatar, Routes.user_avatar)

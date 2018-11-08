@@ -17,7 +17,10 @@ def suite():
     suite.addTest(UserProfileTestCase('test_api_jwt_required_to_see_my_profile'))
     suite.addTest(UserProfileTestCase('test_api_see_my_profile'))
     suite.addTest(UserProfileTestCase('test_api_edit_my_profile'))
-    
+
+    suite.addTest(UserProfileTestCase('test_api_get_my_avatar'))
+    suite.addTest(UserProfileTestCase('test_api_edit_my_avatar'))
+
     return suite
 
 

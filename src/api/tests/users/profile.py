@@ -46,3 +46,19 @@ class UserProfileTestCase(BaseTestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.json.get('name'), update_data.get('name'))
         self.assertEqual(res.json.get('detection'), update_data.get('detection'))
+
+    def test_api_get_my_avatar(self):
+        login_data = {'email': self.testing_user.get('email'), 'password': self.testing_user.get('password')}
+        res_login = self.client().post(f'{self.url}{Routes.auth_login}',
+                                       data=json.dumps(login_data),
+                                       content_type='application/json')
+        self.assertEqual(res_login.status_code, 200)
+
+        res = self.client().get(f'{self.url}{Routes.user_avatar}',
+                                headers=dict(Authorization=f"Bearer {res_login.json.get('jwt')}"),
+                                content_type='application/json'
+                                )
+        self.assertEqual(res.status_code, 200)
+
+    def test_api_edit_my_avatar(self):
+        self.assertEqual(1, 1)
