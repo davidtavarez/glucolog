@@ -43,6 +43,9 @@ class Avatar(Resource):
         if not UserModel.allowed_avatar(file.filename):
             return {'error': 'Avatar not supported.'}, 400
 
+        if not user:
+            return {'error': 'User not found.'}, 404
+
         object_key = '{}.{}'.format(str(uuid.uuid4()).replace('-', ''), file.filename.rsplit('.', 1)[1].lower())
 
         s3 = boto3.client(

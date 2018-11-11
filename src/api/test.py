@@ -2,7 +2,8 @@ import unittest
 
 from tests.test_auth import AuthTestCase
 from tests.users.profile import UserProfileTestCase
-from tests.users.weight import UserWeightTestCase
+from tests.users.weight.weight import UserWeightTestCase
+from tests.users.weight.photo import UserWeightRecordPhotoTestCase
 from tests.users.glycaemia.record import UserGlycaemiaRecordTestCase
 from tests.utils import StatesTestCase
 from tests.users.glycaemia.photo import UserGlycaemiaRecordPhotoTestCase
@@ -38,6 +39,10 @@ def suite():
     suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_get_record_photo'))
     suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_delete_record_photo'))
     suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_save_photo'))
+
+    suite.addTest(UserWeightRecordPhotoTestCase('test_api_get_record_photo'))
+    suite.addTest(UserWeightRecordPhotoTestCase('test_api_delete_record_photo'))
+    suite.addTest(UserWeightRecordPhotoTestCase('test_api_save_photo'))
 
     return suite
 

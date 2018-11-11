@@ -6,40 +6,38 @@ from flask_restful import Resource, reqparse
 from werkzeug.datastructures import FileStorage
 import uuid
 
-from models.users.entries.glycaemia.photo import Photo as GlycaemiaPhotoModel
-from schemas.users.entries.glycaemia.photo import Photo as GlycaemiaPhotoSchema
+from models.users.entries.weight.photo import Photo as WeightPhotoModel
+from schemas.users.entries.weight.photo import Photo as WeightPhotoSchema
 
 
-class GlycaemiaPhoto(Resource):
+class WeightPhoto(Resource):
     def __init__(self) -> None:
         super().__init__()
 
         self.S3_KEY = os.environ.get('S3_KEY', None)
         self.S3_SECRET = os.environ.get('S3_SECRET', None)
-        self.S3_BUCKET = os.environ.get('S3_BUCKET_GLYCEAMIA_RECORDS_PHOTOS', None)
+        self.S3_BUCKET = os.environ.get('S3_BUCKET_WEIGHT_RECORDS_PHOTOS', None)
 
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('photo', type=FileStorage, location='files')
 
-        self.schema = GlycaemiaPhotoSchema()
+        self.schema = WeightPhotoSchema()
 
     @jwt_required
     def get(self, id):
-        photo = GlycaemiaPhotoModel.getByRecordId(id)
+        photo = WeightPhotoModel.getByRecordId(id)
         if photo:
             return self.schema.jsonify(photo, many=False)
         return {'error', "Record don't have a photo.", 404}
 
     @jwt_required
     def delete(self, id):
-        if GlycaemiaPhotoModel.deleteByRecordId(id):
+        if WeightPhotoModel.deleteByRecordId(id):
             return {}, 200
         return {'error': 'Record not found'}, 404
 
     @jwt_required
     def post(self, id):
-        photo = GlycaemiaPhotoModel.getByRecordId(id)
-
         if self.S3_KEY is None or self.S3_SECRET is None or self.S3_BUCKET is None:
             return {'error': 'S3 Bucket is not configured.'}, 500
 
@@ -48,8 +46,10 @@ class GlycaemiaPhoto(Resource):
         if not file:
             return {'error': 'Missing photo.'}, 400
 
-        if not GlycaemiaPhotoModel.allowed_photo(file.filename):
+        if not WeightPhotoModel.allowed_photo(file.filename):
             return {'error': 'Photo not supported.'}, 400
+
+        photo = WeightPhotoModel.getByRecordId(id)
 
         if not photo:
             return {'error': 'Record not found.'}, 404

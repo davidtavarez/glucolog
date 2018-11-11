@@ -6,7 +6,7 @@ from routes import Routes
 from tests.users import UserTestCase
 
 
-class UserGlycaemiaRecordPhotoTestCase(UserTestCase):
+class UserWeightRecordPhotoTestCase(UserTestCase):
 
     def setUp(self):
         super().setUp()
@@ -17,7 +17,7 @@ class UserGlycaemiaRecordPhotoTestCase(UserTestCase):
         )
 
     def test_api_get_record_photo(self):
-        url = '{0}{1}'.format(self.url, Routes.user_glycaemia_photo.replace('<int:id>', str(self.glycaemia_record_photo_id)))
+        url = '{0}{1}'.format(self.url, Routes.user_weight_photo.replace('<int:id>', str(self.weight_record_photo_id)))
         res = self.client().get(url,
                                 headers=dict(Authorization=f"Bearer {self.jwt}"),
                                 content_type='application/json'
@@ -25,7 +25,7 @@ class UserGlycaemiaRecordPhotoTestCase(UserTestCase):
         self.assertEqual(res.status_code, 200)
 
     def test_api_delete_record_photo(self):
-        url = '{0}{1}'.format(self.url, Routes.user_glycaemia_photo.replace('<int:id>', str(self.glycaemia_record_photo_id)))
+        url = '{0}{1}'.format(self.url, Routes.user_weight_photo.replace('<int:id>', str(self.weight_record_photo_id)))
         res = self.client().get(url,
                                 headers=dict(Authorization=f"Bearer {self.jwt}"),
                                 content_type='application/json'
@@ -34,12 +34,12 @@ class UserGlycaemiaRecordPhotoTestCase(UserTestCase):
 
     def test_api_save_photo(self):
         data = {'photo': (io.BytesIO(self.testing_photo), 'example.jpg')}
-        url = '{0}{1}'.format(self.url, Routes.user_glycaemia_photo.replace('<int:id>', str(self.glycaemia_record_photo_id)))
+        url = '{0}{1}'.format(self.url, Routes.user_weight_photo.replace('<int:id>', str(self.weight_record_photo_id)))
         res = self.client().post(url,
-                                  data=data,
-                                  headers=dict(Authorization=f"Bearer {self.jwt}"),
-                                  content_type='multipart/form-data'
-                                  )
+                                 data=data,
+                                 headers=dict(Authorization=f"Bearer {self.jwt}"),
+                                 content_type='multipart/form-data'
+                                 )
 
         self.assertEqual(res.status_code, 200)
         self.assertIsNotNone(res.json.get('url', None))

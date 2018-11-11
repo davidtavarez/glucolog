@@ -10,6 +10,7 @@ class Routes(object):
 
     user_weight_list = '/users/me/weight'
     user_weight_details = '/users/me/weight/<int:id>'
+    user_weight_photo = '/users/me/weight/<int:id>/photo'
 
     user_glycaemia_list = '/users/me/glycaemia'
     user_glycaemia_details = '/users/me/<int:id>'
