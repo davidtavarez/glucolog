@@ -1,5 +1,4 @@
 from models import db
-import datetime
 
 
 class RevokedTokenModel(db.Model):

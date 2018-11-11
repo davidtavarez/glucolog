@@ -1,14 +1,15 @@
 from flask_sqlalchemy import Model
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, TIMESTAMP, func
 
 db = SQLAlchemy()
 
 
 class Resource(Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    createdAt = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-    updatedAt = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(),
-                          onupdate=db.func.current_timestamp(), nullable=False)
+    id = Column(Integer(), primary_key=True)
+    createdAt = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
+    updatedAt = Column(TIMESTAMP, server_default=func.current_timestamp(),
+                          onupdate=func.current_timestamp(), nullable=False)
 
     def safe(self):
         db.session.add(self)
