@@ -1,23 +1,30 @@
 from models import db
 from models.users.entries import Entry
 from models.users.user import User
+from models.utils.state import State
+from sqlalchemy import desc
 
 
-class Weight(Entry, db.Model):
+class Record(Entry, db.Model):
     def __init__(self, user_id) -> None:
         super().__init__()
         self.user = user_id
 
-    user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    __tablename__ = 'glycaemia_record'
+
+    user = db.Column(db.Integer, db.ForeignKey('{}.id'.format(User.__tablename__)), nullable=False)
+    state = db.Column(db.Integer, db.ForeignKey('{}.id'.format(State.__tablename__)), nullable=False)
     value = db.Column(db.Integer, nullable=False)
+
+    comment = db.Column(db.String(250), nullable=True)
 
     @classmethod
     def findByUserEmail(cls, email):
         return cls.query.join(User).filter(User.email == email).all()
 
     @classmethod
-    def findByUserId(cls, user_id, order_by='takenAt', direction='desc'):
-        return cls.query.filter_by(user=user_id).order_by(f"{order_by} {direction}").all()
+    def findByUserId(cls, user_id):
+        return cls.query.filter_by(user=user_id).order_by(desc(Record.takenAt)).all()
 
     @classmethod
     def getById(cls, id):

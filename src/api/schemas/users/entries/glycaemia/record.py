@@ -4,7 +4,7 @@ from schemas.utils.state import State
 from schemas.users.entries import Entry
 
 
-class Glycaemia(Entry):
+class Record(Entry):
     value = fields.Integer()
     time = fields.Time()
     state = fields.Nested(State)

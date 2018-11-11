@@ -28,14 +28,11 @@ class UserWeightTestCase(UserTestCase):
         self.assertEqual(len(res.json), len(self.weight_records))
 
         first_id = res.json[0].get('id')
-        first_value = res.json[0].get('value')
 
         detailed_url ='{0}{1}'.format(self.url, Routes.user_weight_details.replace('<int:id>', first_id))
 
         res = self.client().get(detailed_url, headers=dict(Authorization=f"Bearer {self.jwt}"))
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(first_value, self.weight_records[0].get('value'))
-        self.assertEqual(res.json.get('value'), self.weight_records[0].get('value'))
 
     def test_api_edit_a_weight_record(self):
         res = self.client().get(f'{self.url}{Routes.user_weight_list}',
@@ -45,7 +42,6 @@ class UserWeightTestCase(UserTestCase):
         self.assertEqual(len(res.json), len(self.weight_records))
 
         first_id = res.json[0].get('id')
-        first_value = res.json[0].get('value')
 
         detailed_url = '{0}{1}'.format(self.url, Routes.user_weight_details.replace('<int:id>', first_id))
 
@@ -53,8 +49,6 @@ class UserWeightTestCase(UserTestCase):
                                 headers=dict(Authorization=f"Bearer {self.jwt}"),
                                 content_type='application/json')
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(first_value, self.weight_records[0].get('value'))
-        self.assertEqual(res.json.get('value'), self.weight_records[0].get('value'))
 
         new_value = 40
 

@@ -16,7 +16,7 @@ class Avatar(Resource):
 
         self.S3_KEY = os.environ.get('S3_KEY', None)
         self.S3_SECRET = os.environ.get('S3_SECRET', None)
-        self.S3_BUCKET = os.environ.get('S3_BUCKET', None)
+        self.S3_BUCKET = os.environ.get('S3_BUCKET_AVATARS', None)
 
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('avatar', type=FileStorage, location='files')

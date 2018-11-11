@@ -3,8 +3,9 @@ import unittest
 from tests.test_auth import AuthTestCase
 from tests.users.profile import UserProfileTestCase
 from tests.users.weight import UserWeightTestCase
-from tests.users.glycaemia import UserGlycaemiaTestCase
+from tests.users.glycaemia.record import UserGlycaemiaRecordTestCase
 from tests.utils import StatesTestCase
+from tests.users.glycaemia.photo import UserGlycaemiaRecordPhotoTestCase
 
 
 def suite():
@@ -29,10 +30,14 @@ def suite():
     suite.addTest(UserWeightTestCase('test_api_edit_a_weight_record'))
     suite.addTest(UserWeightTestCase('test_api_delete_a_weight_record'))
 
-    suite.addTest(UserGlycaemiaTestCase('test_api_jwt_required_to_user'))
-    suite.addTest(UserGlycaemiaTestCase('test_api_get_my_glycaemia_table'))
-    suite.addTest(UserGlycaemiaTestCase('test_api_get_glycaemia_details'))
-    suite.addTest(UserGlycaemiaTestCase('test_api_delete_a_glycaemia_record'))
+    suite.addTest(UserGlycaemiaRecordTestCase('test_api_jwt_required_to_user'))
+    suite.addTest(UserGlycaemiaRecordTestCase('test_api_get_my_glycaemia_table'))
+    suite.addTest(UserGlycaemiaRecordTestCase('test_api_get_glycaemia_details'))
+    suite.addTest(UserGlycaemiaRecordTestCase('test_api_delete_a_glycaemia_record'))
+
+    suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_get_record_photo'))
+    suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_delete_record_photo'))
+    suite.addTest(UserGlycaemiaRecordPhotoTestCase('test_api_save_photo'))
 
     return suite
 

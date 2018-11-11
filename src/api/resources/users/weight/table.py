@@ -1,8 +1,8 @@
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 
-from models.users.entries.weight import Weight as WeightModel
-from schemas.users.entries.weight import Weight as WeightSchema
+from models.users.entries.weight.record import Record as WeightModel
+from schemas.users.entries.weight.record import Record as WeightSchema
 
 
 class WeightTable(Resource):

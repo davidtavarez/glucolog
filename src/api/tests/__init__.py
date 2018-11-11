@@ -5,8 +5,10 @@ from flask_jwt_extended import JWTManager
 
 from models import db
 from models.jwt import RevokedTokenModel
-from models.users.entries.weight import Weight as WeightModel
-from models.users.entries.glycaemia import Glycaemia as GlycaemiaModel
+from models.users.entries.weight.record import Record as WeightModel
+from models.users.entries.glycaemia.record import Record as GlycaemiaModel
+from models.users.entries.glycaemia.photo import Photo as GlycaemiaPhotoModel
+
 
 from models.utils.state import State as StateModel
 
@@ -43,6 +45,9 @@ class BaseTestCase(unittest.TestCase):
                                   {'takenAt': '2018-03-02 12:05:16', 'value': 90},
                                   {'takenAt': '2018-03-02 6:00:50', 'value': 160},
                                   {'takenAt': '2018-05-01 20:42:20', 'value': 130}]
+
+        self.glycaemia_record_photo = {'url': 'https://DUMMY/URL'}
+        self.record_photo_id = -1
 
         self.state_records = ['fasting', 'post-meal']
 
@@ -96,3 +101,12 @@ class BaseTestCase(unittest.TestCase):
                 db.session.add(glycemia)
 
             db.session.commit()
+
+            last_glycemia_record = GlycaemiaModel.findByUserId(user.id).pop().id
+            glycemia_record_photo = GlycaemiaPhotoModel(last_glycemia_record)
+            glycemia_record_photo.url = self.glycaemia_record_photo.get('url')
+            db.session.add(glycemia_record_photo)
+
+            db.session.commit()
+
+            self.record_photo_id = last_glycemia_record

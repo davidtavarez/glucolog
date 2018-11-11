@@ -2,7 +2,7 @@ from routes import Routes
 from tests.users import UserTestCase
 
 
-class UserGlycaemiaTestCase(UserTestCase):
+class UserGlycaemiaRecordTestCase(UserTestCase):
 
     def setUp(self):
         super().setUp()

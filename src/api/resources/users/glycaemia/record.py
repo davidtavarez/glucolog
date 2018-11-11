@@ -1,8 +1,8 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 
-from models.users.entries.glycaemia import Glycaemia as GlycaemiaModel
-from schemas.users.entries.glycaemia import Glycaemia as GlycaemiaSchema
+from models.users.entries.glycaemia.record import Record as GlycaemiaModel
+from schemas.users.entries.glycaemia.record import Record as GlycaemiaSchema
 
 
 class GlycaemiaRecord(Resource):
