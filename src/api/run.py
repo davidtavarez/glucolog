@@ -9,7 +9,7 @@ def create_app(config, version):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_json(config)
 
-    from app import blueprint
+    from blueprint import blueprint
     app.register_blueprint(blueprint, url_prefix=f"/api/v{version}")
 
     from models import db

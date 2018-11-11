@@ -22,7 +22,6 @@ class User(Resource, db.Model):
         self.email = email
         self.password = password
 
-    __tablename__ = 'users'
     name = db.Column(db.String(100), nullable=True, unique=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
     _password = db.Column(db.String(60), nullable=False)
