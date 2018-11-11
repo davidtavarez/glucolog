@@ -1,9 +1,10 @@
+from flask_sqlalchemy import Model
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
-class Resource(object):
+class Resource(Model):
     id = db.Column(db.Integer(), primary_key=True)
     createdAt = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     updatedAt = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(),
