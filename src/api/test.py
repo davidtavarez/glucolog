@@ -3,6 +3,7 @@ import unittest
 from tests.test_auth import AuthTestCase
 from tests.users.profile import UserProfileTestCase
 from tests.users.weight import UserWeightTestCase
+from tests.users.glycaemia import UserGlycaemiaTestCase
 from tests.utils import StatesTestCase
 
 
@@ -22,11 +23,16 @@ def suite():
     suite.addTest(UserProfileTestCase('test_api_get_my_avatar'))
     suite.addTest(UserProfileTestCase('test_api_edit_my_avatar'))
 
-    suite.addTest(UserWeightTestCase('test_api_required_jwt'))
+    suite.addTest(UserWeightTestCase('test_api_jwt_required_to_user'))
     suite.addTest(UserWeightTestCase('test_api_get_my_weight_table'))
     suite.addTest(UserWeightTestCase('test_api_get_weight_details'))
     suite.addTest(UserWeightTestCase('test_api_edit_a_weight_record'))
     suite.addTest(UserWeightTestCase('test_api_delete_a_weight_record'))
+
+    suite.addTest(UserGlycaemiaTestCase('test_api_jwt_required_to_user'))
+    suite.addTest(UserGlycaemiaTestCase('test_api_get_my_glycaemia_table'))
+    suite.addTest(UserGlycaemiaTestCase('test_api_get_glycaemia_details'))
+    suite.addTest(UserGlycaemiaTestCase('test_api_delete_a_glycaemia_record'))
 
     return suite
 

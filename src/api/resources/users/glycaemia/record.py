@@ -1,27 +1,27 @@
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 
-from models.users.entries.weight import Weight as WeightModel
-from schemas.users.entries.weight import Weight as WeightSchema
+from models.users.entries.glycaemia import Glycaemia as GlycaemiaModel
+from schemas.users.entries.glycaemia import Glycaemia as GlycaemiaSchema
 
 
-class WeightRecord(Resource):
+class GlycaemiaRecord(Resource):
     def __init__(self) -> None:
         super().__init__()
 
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('value')
 
-        self.schema = WeightSchema()
+        self.schema = GlycaemiaSchema()
 
     @jwt_required
     def get(self, id):
-        return self.schema.jsonify(WeightModel.getById(id))
+        return self.schema.jsonify(GlycaemiaModel.getById(id))
 
     @jwt_required
     def post(self, id):
         data = self.parser.parse_args()
-        record = WeightModel.getById(id)
+        record = GlycaemiaModel.getById(id)
 
         value = data.get('value', None)
         if not value:
@@ -30,10 +30,10 @@ class WeightRecord(Resource):
         record.value = value
         record.safe()
 
-        return self.schema.jsonify(WeightModel.getById(id))
+        return self.schema.jsonify(GlycaemiaModel.getById(id))
 
     @jwt_required
     def delete(self, id):
-        if WeightModel.deleteById(id):
+        if GlycaemiaModel.deleteById(id):
             return {}, 200
         return {'error': 'Record not found'}, 404

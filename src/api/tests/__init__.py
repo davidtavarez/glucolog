@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from flask_jwt_extended import JWTManager
@@ -5,7 +6,10 @@ from flask_jwt_extended import JWTManager
 from models import db
 from models.jwt import RevokedTokenModel
 from models.users.entries.weight import Weight as WeightModel
-from models.utils.state import State
+from models.users.entries.glycaemia import Glycaemia as GlycaemiaModel
+
+from models.utils.state import State as StateModel
+
 from run import create_app, VERSION
 from models.users.user import User as UserModel, Sex, DiabetesType
 
@@ -34,6 +38,14 @@ class BaseTestCase(unittest.TestCase):
                                {'takenAt': '2018-05-01', 'value': 28},
                                {'takenAt': '2018-06-03', 'value': 35}]
 
+        self.glycaemia_records = [{'takenAt': '2018-03-02 08:20:01', 'value': 90},
+                                  {'takenAt': '2018-03-02 10:30:31', 'value': 120},
+                                  {'takenAt': '2018-03-02 12:05:16', 'value': 90},
+                                  {'takenAt': '2018-03-02 6:00:50', 'value': 160},
+                                  {'takenAt': '2018-05-01 20:42:20', 'value': 130}]
+
+        self.state_records = ['fasting', 'post-meal']
+
         jwt = JWTManager(self.app)
 
         @jwt.token_in_blacklist_loader
@@ -45,12 +57,11 @@ class BaseTestCase(unittest.TestCase):
             db.drop_all()
             db.create_all()
 
-            fasting = State()
-            fasting.description = 'fasting'
-            db.session.add(fasting)
-            post_meal = State()
-            post_meal.description = 'post-meal'
-            db.session.add(post_meal)
+            for state in self.state_records:
+                record = StateModel(state)
+                db.session.add(record)
+
+            db.session.commit()
 
             user = UserModel(self.testing_user.get('email'), self.testing_user.get('password'))
             user.name = self.testing_user.get('name')
@@ -69,4 +80,19 @@ class BaseTestCase(unittest.TestCase):
                 weight.value = record.get('value')
                 weight.takenAt = datetime.datetime.strptime(record.get('takenAt'), "%Y-%m-%d").date()
                 db.session.add(weight)
+
+            db.session.commit()
+
+            for record in self.glycaemia_records:
+                glycemia = GlycaemiaModel(user.id)
+                glycemia.value = record.get('value')
+
+                rand = round(random.uniform(0, 1))
+                state = self.state_records[rand]
+                state = StateModel.getByDescription(state).id
+                glycemia.state = state
+                glycemia.comment = "random record {}".format(state)
+                glycemia.takenAt = datetime.datetime.strptime(record.get('takenAt'), "%Y-%m-%d %H:%M:%S").date()
+                db.session.add(glycemia)
+
             db.session.commit()

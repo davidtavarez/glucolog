@@ -5,7 +5,7 @@ from models.users.entries.weight import Weight as WeightModel
 from schemas.users.entries.weight import Weight as WeightSchema
 
 
-class Table(Resource):
+class WeightTable(Resource):
     def __init__(self) -> None:
         super().__init__()
 

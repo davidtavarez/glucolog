@@ -9,7 +9,7 @@ class UserWeightTestCase(UserTestCase):
     def setUp(self):
         super().setUp()
 
-    def test_api_required_jwt(self):
+    def test_api_jwt_required_to_user(self):
         res = self.client().get(f'{self.url}{Routes.user_weight_list}')
         self.assertEqual(res.status_code, 401)
 
