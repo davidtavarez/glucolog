@@ -1,7 +1,7 @@
 from marshmallow import fields
 
-from schemas import Resource
+from schemas import ma
 
 
-class Avatar(Resource):
+class Avatar(ma.Schema):
     avatar = fields.String()

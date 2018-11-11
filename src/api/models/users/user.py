@@ -55,8 +55,8 @@ class User(Resource, db.Model):
     def find_avatar(cls, email):
         return cls.query.with_entities(User.avatar).filter_by(email=email).first()
 
-    @classmethod
-    def allowed_avatar(filename):
+    @hybrid_method
+    def allowed_avatar(cls, filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ['jpg', 'png', 'jpeg']
 
     @hybrid_method

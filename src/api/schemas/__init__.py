@@ -8,3 +8,4 @@ class Resource(ma.Schema):
     id = fields.String(dump_only=True)
     createdAt = fields.DateTime()
     updatedAt = fields.DateTime()
+
