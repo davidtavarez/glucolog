@@ -98,7 +98,7 @@ class BaseTestCase(unittest.TestCase):
                 rand = round(random.uniform(0, 1))
                 state = self.state_records[rand]
                 state = StateModel.getByDescription(state).id
-                glycemia.state = state
+                glycemia.state_id = state
                 glycemia.comment = "random record {}".format(state)
                 glycemia.takenAt = datetime.datetime.strptime(record.get('takenAt'), "%Y-%m-%d %H:%M:%S").date()
                 db.session.add(glycemia)
