@@ -14,6 +14,9 @@ from resources.users.glycaemia.record import GlycaemiaRecord
 from resources.users.glycaemia.table import GlycaemiaTable
 from resources.users.glycaemia.photo import GlycaemiaPhoto
 
+from resources.users.keys.record import KeyRecord
+from resources.users.keys.table import KeyTable
+
 
 from routes import Routes
 
@@ -37,3 +40,6 @@ api.add_resource(WeightPhoto, Routes.user_weight_photo)
 api.add_resource(GlycaemiaTable, Routes.user_glycaemia_list)
 api.add_resource(GlycaemiaRecord, Routes.user_glycaemia_details)
 api.add_resource(GlycaemiaPhoto, Routes.user_glycaemia_photo)
+
+api.add_resource(KeyTable, Routes.user_keys_readonly_list)
+api.add_resource(KeyRecord, Routes.user_keys_readonly_details)

@@ -11,8 +11,9 @@ from models.users.entries.weight.photo import Photo as WeightPhotoModel
 from models.users.entries.glycaemia.record import Record as GlycaemiaModel
 from models.users.entries.glycaemia.photo import Photo as GlycaemiaPhotoModel
 
-
 from models.utils.state import State as StateModel
+
+from models.users.keys.read import Read as KeyModel
 
 from run import create_app, VERSION
 from models.users.user import User as UserModel, Sex, DiabetesType
@@ -51,6 +52,7 @@ class BaseTestCase(unittest.TestCase):
         self.record_photo = {'url': 'https://DUMMY/URL'}
         self.glycaemia_record_photo_id = -1
         self.weight_record_photo_id = -1
+        self.key_record_id = -1
 
         self.state_records = ['fasting', 'post-meal']
 
@@ -119,5 +121,13 @@ class BaseTestCase(unittest.TestCase):
 
             db.session.commit()
 
+            key = KeyModel(user.id)
+            key.value = KeyModel.generateKey()
+            key.username = 'testing01'
+            db.session.add(key)
+
+            db.session.commit()
+
             self.glycaemia_record_photo_id = last_glycemia_record
             self.weight_record_photo_id = last_weight_record
+            self.key_record_id = KeyModel.getByUsername('testing01').id

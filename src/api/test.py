@@ -5,6 +5,8 @@ from tests.users.profile import UserProfileTestCase
 from tests.users.weight.weight import UserWeightTestCase
 from tests.users.weight.photo import UserWeightRecordPhotoTestCase
 from tests.users.glycaemia.record import UserGlycaemiaRecordTestCase
+from tests.users.keys.read import UserReaOnlyKeyTestCase
+
 from tests.utils import StatesTestCase
 from tests.users.glycaemia.photo import UserGlycaemiaRecordPhotoTestCase
 
@@ -43,6 +45,10 @@ def suite():
     suite.addTest(UserWeightRecordPhotoTestCase('test_api_get_record_photo'))
     suite.addTest(UserWeightRecordPhotoTestCase('test_api_delete_record_photo'))
     suite.addTest(UserWeightRecordPhotoTestCase('test_api_save_photo'))
+
+    suite.addTest(UserReaOnlyKeyTestCase('test_api_get_all_users_key'))
+    suite.addTest(UserReaOnlyKeyTestCase('test_api_user_can_generate_key'))
+    suite.addTest(UserReaOnlyKeyTestCase('test_api_delete_user_key'))
 
     return suite
 

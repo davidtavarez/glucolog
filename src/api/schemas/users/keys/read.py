@@ -4,5 +4,5 @@ from schemas import Resource
 
 
 class Read(Resource):
-    name = fields.String()
+    username = fields.String()
     value = fields.String()
