@@ -3,6 +3,9 @@ class Routes(object):
 
     auth_login = '/auth/login'
     auth_register = '/auth/register'
+    auth_logout_refresh = '/auth/loguout/refresh'
+    auth_logout = '/auth/logout'
+    auth_token_refresh = '/auth/token/refresh'
 
     user_profile = '/users/me'
 

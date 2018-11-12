@@ -3,6 +3,7 @@ from flask_restful import Api
 
 from resources.auth.register import Register
 from resources.auth.login import Login
+from resources.jwt import TokenRefresh, UserLogoutRefresh, UserLogoutAccess
 from resources.users.profile import Profile
 from resources.utils.state import States
 from resources.users.avatar import Avatar
@@ -49,3 +50,7 @@ api.add_resource(KeyRecord, Routes.user_keys_readonly_details)
 
 api.add_resource(GlycaemiaData, Routes.user_charts_glycaemia)
 api.add_resource(WeightData, Routes.user_charts_weight)
+
+api.add_resource(UserLogoutAccess, Routes.auth_logout)
+api.add_resource(UserLogoutRefresh, Routes.auth_logout_refresh)
+api.add_resource(TokenRefresh, Routes.auth_token_refresh)
