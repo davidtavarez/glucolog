@@ -243,6 +243,24 @@ Expired tokens MUST NOT be refreshed.
     + Attributes
         + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - New JWT
 
+## Refresh a token [POST /auth/logout]
+
+Allows logout
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+
 ## User registration [/auth/register]
 
 ### Register a new user [POST]
@@ -414,11 +432,11 @@ Restores user avatar to the default one.
 + Response 204
 
 
-## User glycemia [/users/me/glycemia]
+## User glycaemia [/users/me/glycaemia]
 
-### List all user's glycemia registered [GET]
+### List all user's glycaemia registered [GET]
 
-List all user's glycemia registered.
+List all user's glycaemia registered.
 
 |                         |     |
 |-------------------------|-----|
@@ -431,11 +449,11 @@ List all user's glycemia registered.
             Authorization: JWT <token>
 
 + Response 200 (application/json)
-    + Attributes (array[Glycemia])
+    + Attributes (array[glycaemia])
 
-### Set user glycemia [POST]
+### Set user glycaemia [POST]
 
-Sets user glycemia.
+Sets user glycaemia.
 
 **Endpoint information**
 
@@ -458,9 +476,9 @@ Sets user glycemia.
 
 + Response 201
 
-### Delete user glycemia [DELETE /users/me/glycemia/{id}]
+### Delete user glycaemia [DELETE /users/me/glycaemia/{id}]
 
-Delet a glycemia record
+Delet a glycaemia record
 
 **Endpoint information**
 
@@ -476,7 +494,28 @@ Delet a glycemia record
 
 + Response 204
 
-### Add glycemia record picture [PATCH /users/me/glycemia/{id}]
+### Recieve glycaemia record picture [GET /users/me/glycaemia/{id}/picture]
+
+Get glycaemia picture.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes
+        + avatar: `https://...` (string) - Public download URL
+
+### Add glycaemia record picture [POST /users/me/glycaemia/{id}/picture]
 
 Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
 
@@ -503,7 +542,7 @@ Either upload the raw binary ( **media** parameter) of the file, or its base64-e
     + Attributes
         + avatar: `https://...` (string) - Public download URL
 
-### Delete glycemia record picture [DELETE /users/me/glycemia/picture/{id}]
+### Delete glycaemia record picture [DELETE /users/me/glycaemia/{id}/picture]
 
 Delete
 
@@ -512,7 +551,7 @@ Delete
 
             Authorization: JWT <token>
 
-+ Response 200
++ Response 204
 
 
 ## User weight [/users/me/weight]
@@ -570,6 +609,65 @@ Deletes a weight record
 | Has restricted scope    | No  |
 
 + Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204
+
+### Recieve weight record picture [GET /users/me/weight/{id}/picture]
+
+Get weight picture.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes
+        + avatar: `https://...` (string) - Public download URL
+
+### Add weight record picture [POST /users/me/weight/{id}/picture]
+
+Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                       |
+|-------|---------| --------------------- |
+| `400` | `2001`  | File is too large     |
+| `400` | `2002`  | Unsupported file type |
+
++ Request (multipart/form-data)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes
+        + avatar: `https://...` (string) - Public download URL
+
+### Delete weight record picture [DELETE /users/me/glycaemia/{id}/weight]
+
+Delete
+
++ Request (multipart/form-data)
     + Headers
 
             Authorization: JWT <token>
@@ -643,61 +741,51 @@ Deletes a read only key
 
 + Response 204
 
+# Group Charts
 
-## Users [/users]
+## Glycaemia using keys [/charts/glycaemia]
 
-### List all users [GET]
+### List all user's glycaemia registered using [GET]
 
-Returns a list of users. The users are returned in sorter order, with the most recently created user accounts appearing first.
+List all user's glycaemia registered.
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No |
 | Has restricted scope    | Yes |
 
 + Request
-    + Headers
-
-            Authorization: JWT <token>
-
+    + Attributes
+        + username: `Doctor01` (string,required) - Key name
+        + key: `Mskofswr` (string, required) - Key value.
+        
 + Response 200 (application/json)
-    + Attributes (array[User])
+    + Attributes (array[Glycemia])
 
-## User [/users/{id}]
+## Weight using keys [/charts/weight]
 
-+ Parameters
-    + id: `a6vhAo3FG7t1` (string) - id of the user.
+### List all user's weight registered using [GET]
 
-### Retrieve a user [GET]
-
-Retrieves the details of an existing user.
+List all user's weight registered.
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
-| Has restricted scope    | No  |
-
-**Error codes**
-
-|       |         |                               |
-|-------|---------| ----------------------------- |
-| `400` | `1000`  | Referenced resource not found |
+| Requires authentication | No |
+| Has restricted scope    | Yes |
 
 + Request
-    + Headers
-
-            Authorization: JWT <token>
+    + Attributes
+        + username: `Doctor01` (string,required) - Key name
+        + key: `Mskofswr` (string, required) - Key value.
 
 + Response 200 (application/json)
-    + Attributes (User)
-
-+ Response 404
+    + Attributes (array[Weight])
 
 # Group Utils
 
 ## Current supported states [/utils/state]
 
-When taking a glycemia record which state are supported by the system.
+When taking a glycaemia record which state are supported by the system.
 
 ### Retrieve current supported states [GET]
 
@@ -732,7 +820,7 @@ Retrieves the current supported state.
 + password: `QXR0mi38a2` (string, required) - User password.
 + birthday: `2015-09-10` (string, required) - Kid's birthday.
 + diabetes: 1 (number, required) - Kid's diabetes type.
-+ detectionDate: `2018-03-02` (string, required) - Diabetes detection date.
++ detection: `2018-03-02` (string, required) - Diabetes detection date.
 + sex: `male` (string,required) - Kid's sex.
 + avatar (string, optional, nullable) - URL to user avatar.
 
@@ -742,18 +830,20 @@ Retrieves the current supported state.
 
 ## Key (Resource)
 + user (User, required) - User
-+ name: `Access to Doctors` (string, required) - Name
++ username: `Access to Doctors` (string, required) - Name
 + value: `SDFlks343` (string, required) - Key
 
 ## Weight (Entry)
 + value: 10 (number, required) - Kid's weight in kilogram.
 
 ## State
-+ value: `fasting` (string, required) - State.
++ description: `fasting` (string, required) - State.
 
-## Glycemia (Entry)
+## glycaemia (Entry)
 + value: 120 (string, required) - Kid's weight in kilogram.
-+ time: `14:23:23` (string, required) - Time.
 + state (State, required) - Fasting or post-meal.
 + comment: `Very good` (string, optional) - Comment. 
-+ picture: `https://...` (string, optional) - Picture.
+
+## glycaemiaPhoto (Resource)
++ record (glycaemia, required) 
++ url: `https://...` (string, optional) - Picture.
