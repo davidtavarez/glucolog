@@ -35,5 +35,5 @@ class GlycaemiaRecord(Resource):
     @jwt_required
     def delete(self, id):
         if GlycaemiaModel.deleteById(id):
-            return {}, 200
+            return {}, 204
         return {'error': 'Record not found'}, 404

@@ -33,7 +33,7 @@ class GlycaemiaPhoto(Resource):
     @jwt_required
     def delete(self, id):
         if GlycaemiaPhotoModel.deleteByRecordId(id):
-            return {}, 200
+            return {}, 204
         return {'error': 'Record not found'}, 404
 
     @jwt_required
