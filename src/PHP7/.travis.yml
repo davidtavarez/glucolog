@@ -1,0 +1,24 @@
+language: php
+
+php:
+  - 7.2
+  
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --prefer-source --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan passport:install
+  
+before_install:
+  - mysql -e 'CREATE DATABASE glucolog_test;'
+
+script:
+  - phpunit
+
+services:
+  - mysql
+
+notifications:
+  email: false
