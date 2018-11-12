@@ -17,5 +17,5 @@ class Login(Authentication):
         data = self.parser.parse_args()
         user = UserModel.login(data['email'], data['password'])
         if user:
-            return {'jwt': create_access_token(identity=user.email)}, 200
+            return {'jwt': create_access_token(identity=user.email, expires_delta=False)}, 200
         return {'error': 'Wrong credentials'}, 404

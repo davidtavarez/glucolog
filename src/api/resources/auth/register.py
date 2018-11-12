@@ -35,6 +35,6 @@ class Register(Authentication):
 
         try:
             user.safe()
-            return {'jwt': create_access_token(identity=user.email)}, 201
+            return {'jwt': create_access_token(identity=user.email, expires_delta=False)}, 201
         except Exception as e:
             return {'error': str(e)}, 422
