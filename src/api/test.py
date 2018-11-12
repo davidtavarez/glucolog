@@ -50,6 +50,8 @@ def suite():
     suite.addTest(UserReaOnlyKeyTestCase('test_api_user_can_generate_key'))
     suite.addTest(UserReaOnlyKeyTestCase('test_api_delete_user_key'))
 
+    suite.addTest(UserReaOnlyKeyTestCase('test_api_anyone_can_read_with_keys'))
+
     return suite
 
 

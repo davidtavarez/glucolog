@@ -18,3 +18,6 @@ class Routes(object):
 
     user_keys_readonly_list = '/users/me/key'
     user_keys_readonly_details = '/users/me/key/<int:id>'
+
+    user_charts_glycaemia = '/charts/glycaemia'
+    user_charts_weight = '/charts/weight'

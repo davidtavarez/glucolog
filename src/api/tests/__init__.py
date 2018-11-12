@@ -54,6 +54,9 @@ class BaseTestCase(unittest.TestCase):
         self.weight_record_photo_id = -1
         self.key_record_id = -1
 
+        self.key_record_password = ''
+        self.key_record_username = ''
+
         self.state_records = ['fasting', 'post-meal']
 
         jwt = JWTManager(self.app)
@@ -123,7 +126,9 @@ class BaseTestCase(unittest.TestCase):
 
             key = KeyModel(user.id)
             key.value = KeyModel.generateKey()
+            self.key_record_password = key.value
             key.username = 'testing01'
+            self.key_record_username = key.username
             db.session.add(key)
 
             db.session.commit()

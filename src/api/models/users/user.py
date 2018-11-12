@@ -62,5 +62,11 @@ class User(Resource, db.Model):
     def verifyHash(cls, password, hash):
         return sha256.verify(password, hash)
 
+    @classmethod
+    def findByKeys(cls, username, key):
+        from models.users.keys.read import Read as Key
+
+        return cls.query.join(Key).filter(Key.username == username and Key.value == key).first()
+
     def __repr__(self):
         return f"{self.email}"
