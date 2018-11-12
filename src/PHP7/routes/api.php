@@ -28,11 +28,11 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['middleware' => ['auth:api', 'record']], function () {
     Route::prefix('records')->group(function () {
-        Route::get('list', 'RecordController@list');
-        Route::get('/', 'RecordController@index');
+        Route::get('list', 'RecordController@list')->name('records.list');
+        Route::get('/', 'RecordController@index')->name('records.index');
         Route::get('create', 'RecordController@create');
-        Route::post('/', 'RecordController@store');
-        Route::get('/{record}', 'RecordController@show');
+        Route::post('/', 'RecordController@store')->name('records.store');
+        Route::get('/{record}', 'RecordController@show')->name('records.show');
     });
 });
 
