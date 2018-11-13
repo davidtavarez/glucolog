@@ -12,7 +12,8 @@ class RecordRepository implements RecordInterface
     public function index()
     {
         $from = Carbon::now()->subDays(7);
-        return Record::where('board_id', Auth::user()->board_id)->where('date', '>=', $from)->get();
+        $records = Record::where('board_id', Auth::user()->board_id)->where('date', '>=', $from)->get();
+        return response()->json(['records' => $records]);
     }
 
     public function store($request)
@@ -27,7 +28,7 @@ class RecordRepository implements RecordInterface
             'condition' => $request->condition,
         ]);
 
-        return response()->json(['message' => 'Medida creada exitosamente.', 'record' => $record]);
+        return response()->json(['message' => 'Medida creada exitosamente.', 'record' => $record], 201);
     }
 
     public function validateCondition($request)
