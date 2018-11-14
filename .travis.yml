@@ -1,40 +1,38 @@
 matrix:
   include:
-    - php: 7.2
-      env:
-        - TO_TEST=FRONTEND
-        - APP_ENV=testing
-        - APP_KEY=SomeRandomString
-        - DB_CONNECTION=mysql
-        - DB_HOST=127.0.0.1
-        - DB_PORT=3306
-        - DB_DATABASE=glucolog_test
-        - DB_USERNAME=root
-        - DB_PASSWORD=
-      before_install:
-        - mysql -e 'CREATE DATABASE glucolog_test;'
-      script:
-        - cd ./src/php7/
-        - phpunit
-      services:
-        - mysql
-
-    - python: 3.7
-      env:
-        - FLASK_ENV=development
-        - API_VERSION=1
-        - CONFIG_FILE=testing.json
-        - TESTING=1
-      before_script:
-        - cd ./src/python3/
-        - pip3 install -m -r requirements.txt
-        - python3 migrate.py db init
-        - python3 migrate.py db upgrade
-        - python3 migrate.py db migrate
-        - python3 migrate.py seed
-      script:
-        - cd ./src/python3/
-        - python3 test.py
-      dist: xenial
-      sudo: true
- 
+  - name: "Laravel on PHP 7.2"
+    php: 7.2
+    env:
+      - TO_TEST=FRONTEND
+      - APP_ENV=testing
+      - APP_KEY=SomeRandomString
+      - DB_CONNECTION=mysql
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE=glucolog_test
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+    before_install:
+      - mysql -e 'CREATE DATABASE glucolog_test;'
+    script:
+      - cd ./src/php7/
+      - phpunit
+    services:
+      - mysql
+  - name: "Flask on Python 3.7"
+    python: 3.7
+    env:
+      - FLASK_ENV=development
+      - API_VERSION=1
+      - CONFIG_FILE=testing.json
+      - TESTING=1
+    before_script:
+      - cd ./src/python3/
+      - pip3 install -m -r requirements.txt
+      - python3 migrate.py db init
+      - python3 migrate.py db upgrade
+      - python3 migrate.py db migrate
+      - python3 migrate.py seed
+    script:
+      - cd ./src/python3/
+      - python3 test.py
