@@ -35,13 +35,13 @@ $factory->define(App\Models\Record::class, function (Faker $faker) {
             return factory('App\Models\User')->create()->id;
         },
         'date' => $faker->date,
-        'is_in_fast' => $faker->boolean(0),
+        'board_id' => function () {
+            return factory('App\Models\Board')->create()->id;
+        },
         'comment' => $faker->sentence,
         'condition' => $faker->numberBetween(1, 4),
         'status' => $faker->sentence,
-        'food' => $faker->sentence,
-        'measure' => $faker->numberBetween(10, 1000),
-        'food_type' => 'Almuerzo',
+        'measure' => $faker->numberBetween(10, 300),
     ];
 });
 

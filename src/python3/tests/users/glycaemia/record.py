@@ -48,4 +48,4 @@ class UserGlycaemiaRecordTestCase(UserTestCase):
         detailed_url = '{0}{1}'.format(self.url, Routes.user_glycaemia_details.replace('<int:id>', first_id))
 
         res = self.client().delete(detailed_url, headers=dict(Authorization=f"Bearer {self.jwt}"))
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.status_code, 204)

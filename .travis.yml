@@ -1,0 +1,51 @@
+matrix:
+  include:
+  - name: "Laravel on PHP 7.2"
+    language: php
+    php: 7.2
+    env:
+      - TO_TEST=FRONTEND
+      - APP_ENV=testing
+      - APP_KEY=Idgz1PE3zO9iNc0E3oeH3CHDPX9MzZe3
+      - DB_CONNECTION=mysql
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE=glucolog_test
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+    before_install:
+      - mysql -e 'CREATE DATABASE glucolog_test;'
+    before_script:
+      - cd $TRAVIS_BUILD_DIR/src/PHP7/
+      - cp .env.travis .env
+      - composer self-update
+      - composer install --prefer-source --no-interaction
+      - php artisan key:generate
+      - php artisan migrate
+      - php artisan passport:install
+    script:
+      - cd $TRAVIS_BUILD_DIR/src/PHP7/
+      - phpunit
+    services:
+      - mysql
+  - name: "Flask on Python 3.7"
+    language: python
+    python: 3.7
+    dist: xenial
+    sudo: true
+    env:
+      - FLASK_ENV=development
+      - API_VERSION=1
+      - CONFIG_FILE=testing.json
+      - TESTING=1
+    before_script:
+      - cd $TRAVIS_BUILD_DIR/src/python3/
+      - python3 -m pip install -r requirements.txt
+      - rm -Rf migrations
+      - python3 migrate.py db init
+      - python3 migrate.py db migrate
+      - python3 migrate.py db upgrade
+    script:
+      - cd $TRAVIS_BUILD_DIR/src/python3/
+      - python3 test.py
+
