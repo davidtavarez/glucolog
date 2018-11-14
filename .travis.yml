@@ -35,4 +35,6 @@ matrix:
       script:
         - cd ./src/python3/
         - python3 test.py
+      dist: xenial
+      sudo: true
  
