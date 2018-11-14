@@ -1,11 +1,15 @@
+import os
+
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from models import db
 from run import create_app
 
-version = 1
-app = create_app("dev.json", version)
+VERSION = os.getenv('API_VERSION', 1)
+CONFIG_FILE = os.getenv('CONFIG_FILE', 'dev.json')
+
+app = create_app(CONFIG_FILE, VERSION)
 
 migrate = Migrate(app, db)
 manager = Manager(app)
