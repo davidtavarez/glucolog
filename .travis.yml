@@ -16,7 +16,7 @@ matrix:
     before_install:
       - mysql -e 'CREATE DATABASE glucolog_test;'
     script:
-      - cd ./src/php7/
+      - cd $TRAVIS_BUILD_DIR/src/PHP7/
       - phpunit
     services:
       - mysql
@@ -31,13 +31,13 @@ matrix:
       - CONFIG_FILE=testing.json
       - TESTING=1
     before_script:
-      - cd ./src/python3/
+      - cd $TRAVIS_BUILD_DIR/src/python3/
       - python3 -m pip install -r requirements.txt
       - rm -Rf migrations
       - python3 migrate.py db init
       - python3 migrate.py db migrate
       - python3 migrate.py db upgrade
     script:
-      - cd ./src/python3/
+      - cd $TRAVIS_BUILD_DIR/src/python3/
       - python3 test.py
 
