@@ -27,12 +27,12 @@ matrix:
         - TESTING=1
       before_script:
         - cd ./src/python3/
-        - pip install -r requirements.txt
-        - python migrate.py db init
-        - python migrate.py db upgrade
-        - python migrate.py db migrate
-        - python migrate.py seed
+        - pip3 install -m -r requirements.txt
+        - python3 migrate.py db init
+        - python3 migrate.py db upgrade
+        - python3 migrate.py db migrate
+        - python3 migrate.py seed
       script:
         - cd ./src/python3/
-        - python test.py
+        - python3 test.py
  
