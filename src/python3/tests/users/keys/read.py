@@ -38,7 +38,7 @@ class UserReaOnlyKeyTestCase(UserTestCase):
                                    headers=dict(Authorization=f"Bearer {self.jwt}"),
                                    content_type='application/json'
                                    )
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.status_code, 204)
 
     def test_api_anyone_can_read_with_keys(self):
         data = {'username': self.key_record_username, 'key': self.key_record_password}

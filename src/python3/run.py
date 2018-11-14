@@ -1,9 +1,13 @@
+import os
+
 from flask import Flask
 from flask_jwt_extended import JWTManager
 
 from models.jwt import RevokedTokenModel
 
-VERSION = 1
+VERSION = os.getenv('API_VERSION', 1)
+CONFIG_FILE = os.getenv('CONFIG_FILE', 'dev.json')
+
 
 def create_app(config, version):
     app = Flask(__name__, instance_relative_config=True)
@@ -19,12 +23,14 @@ def create_app(config, version):
 
 
 if __name__ == "__main__":
-    app = create_app("dev.json", VERSION)
+    app = create_app(CONFIG_FILE, VERSION)
     jwt = JWTManager(app)
+
 
     @jwt.token_in_blacklist_loader
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']
         return RevokedTokenModel.is_jti_blacklisted(jti)
+
 
     app.run(debug=True)

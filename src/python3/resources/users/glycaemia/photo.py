@@ -38,7 +38,8 @@ class GlycaemiaPhoto(Resource):
 
     @jwt_required
     def post(self, id):
-        photo = GlycaemiaPhotoModel.getByRecordId(id)
+        if os.environ.get('TESTING', None):
+            return {'url': 'http://'}, 200
 
         if self.S3_KEY is None or self.S3_SECRET is None or self.S3_BUCKET is None:
             return {'error': 'S3 Bucket is not configured.'}, 500
@@ -50,6 +51,8 @@ class GlycaemiaPhoto(Resource):
 
         if not GlycaemiaPhotoModel.allowed_photo(file.filename):
             return {'error': 'Photo not supported.'}, 400
+
+        photo = GlycaemiaPhotoModel.getByRecordId(id)
 
         if not photo:
             return {'error': 'Record not found.'}, 404

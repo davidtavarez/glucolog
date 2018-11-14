@@ -1,0 +1,18 @@
+matrix:
+  include:
+    - php: 7.2
+      env: TO_TEST=FRONTEND
+      env: APP_ENV=testing
+      env: APP_KEY=SomeRandomString
+      env: DB_CONNECTION=mysql
+      env: DB_HOST=127.0.0.1
+      env: DB_PORT=3306
+      env: DB_DATABASE=glucolog_test
+      env: DB_USERNAME=root
+      env: DB_PASSWORD=
+
+    - python: 3.7
+      env: FLASK_ENV=development
+      env: API_VERSION=1
+      env: CONFIG_FILE=testing.json
+      env: TESTING=1
