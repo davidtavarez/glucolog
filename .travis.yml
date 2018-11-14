@@ -36,8 +36,3 @@ matrix:
         - cd ./src/python3/
         - python3 test.py
  
- addons:
-  apt:
-    packages:
-      - python3
-      - python3-pip
