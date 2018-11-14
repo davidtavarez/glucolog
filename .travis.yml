@@ -16,3 +16,33 @@ matrix:
       env: API_VERSION=1
       env: CONFIG_FILE=testing.json
       env: TESTING=1
+
+before_install:
+  - mysql -e 'CREATE DATABASE glucolog_test;'
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - cd ./src/python3/
+  - python migrate.py db init
+  - python migrate.py db upgrade
+  - python migrate.py db migrate
+  - python migrate.py seed
+  - cd ./src/php7/
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --prefer-source --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan passport:install
+  
+script:
+  - cd ./src/php7/
+  - phpunit
+  - cd ../../
+  - cd ./src/python3/
+  - python test.py
+
+services:
+  - mysql
