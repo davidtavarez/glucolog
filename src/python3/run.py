@@ -33,4 +33,4 @@ if __name__ == "__main__":
         return RevokedTokenModel.is_jti_blacklisted(jti)
 
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
