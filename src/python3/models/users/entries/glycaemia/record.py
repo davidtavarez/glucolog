@@ -15,6 +15,7 @@ class Record(Entry, db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('{}.id'.format(User.__tablename__)), nullable=False)
     state_id = db.Column(db.Integer, db.ForeignKey('{}.id'.format(State.__tablename__)), nullable=False)
     state = db.relationship(State, backref="states")
+    foods = db.relationship('Food', backref='record', lazy=True)
 
     value = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.String(250), nullable=True)

@@ -18,6 +18,13 @@ class Routes(object):
     user_glycaemia_list = '/users/me/glycaemia'
     user_glycaemia_details = '/users/me/glycaemia/<int:id>'
     user_glycaemia_photo = '/users/me/glycaemia/<int:id>/picture'
+    user_glycaemia_food_list = '/users/me/glycaemia/<int:gid>/food'
+    user_glycaemia_food_add = '/users/me/glycaemia/<int:gid>/food/add'
+    user_glycaemia_food_details = '/users/me/glycaemia/<int:gid>/food/<int:id>'
+    user_glycaemia_food_delete = '/users/me/glycaemia/<int:gid>/food/delete/<int:id>'
+    user_glycaemia_food_edit = '/users/me/glycaemia/<int:gid>/food/edit/<int:id>'
+    
+    
 
     user_keys_readonly_list = '/users/me/key'
     user_keys_readonly_details = '/users/me/key/<int:id>'

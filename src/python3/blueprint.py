@@ -14,6 +14,7 @@ from resources.users.weight.photo import WeightPhoto
 from resources.users.glycaemia.record import GlycaemiaRecord
 from resources.users.glycaemia.table import GlycaemiaTable
 from resources.users.glycaemia.photo import GlycaemiaPhoto
+from resources.users.glycaemia.food import GlycaemiaFood as Food
 
 from resources.users.keys.record import KeyRecord
 from resources.users.keys.table import KeyTable
@@ -30,6 +31,8 @@ api = Api(blueprint)
 
 api.add_resource(Register, Routes.auth_register)
 api.add_resource(Login, Routes.auth_login)
+
+api.add_resource(Food, Routes.user_glycaemia_food_details)
 
 api.add_resource(States, Routes.utils_states)
 api.add_resource(Profile, Routes.user_profile)
