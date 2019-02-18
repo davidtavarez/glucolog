@@ -2,11 +2,11 @@ import random
 
 from sqlalchemy import desc
 
-from models import db, Resource
+from models import db, BaseModel
 from models.users.user import User
 
 
-class Read(Resource, db.Model):
+class Read(BaseModel, db.Model):
     def __init__(self, user_id) -> None:
         super().__init__()
         self.user_id = user_id

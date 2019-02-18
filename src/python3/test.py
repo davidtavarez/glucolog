@@ -7,15 +7,11 @@ from tests.users.weight.photo import UserWeightRecordPhotoTestCase
 from tests.users.glycaemia.record import UserGlycaemiaRecordTestCase
 from tests.users.keys.read import UserReaOnlyKeyTestCase
 
-from tests.utils import StatesTestCase
 from tests.users.glycaemia.photo import UserGlycaemiaRecordPhotoTestCase
 
 
 def suite():
     suite = unittest.TestSuite()
-
-    suite.addTest(StatesTestCase('test_api_states_route_is_responding'))
-    suite.addTest(StatesTestCase('test_api_is_returning_all_states'))
 
     suite.addTest(AuthTestCase('test_api_allow_registration'))
     suite.addTest(AuthTestCase('test_api_allow_login'))

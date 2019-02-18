@@ -11,8 +11,6 @@ from models.users.entries.weight.photo import Photo as WeightPhotoModel
 from models.users.entries.glycaemia.record import Record as GlycaemiaModel
 from models.users.entries.glycaemia.photo import Photo as GlycaemiaPhotoModel
 
-from models.utils.state import State as StateModel
-
 from models.users.keys.read import Read as KeyModel
 
 from run import create_app, VERSION
@@ -70,12 +68,6 @@ class BaseTestCase(unittest.TestCase):
             db.drop_all()
             db.create_all()
 
-            for state in self.state_records:
-                record = StateModel(state)
-                db.session.add(record)
-
-            db.session.commit()
-
             user = UserModel(self.testing_user.get('email'), self.testing_user.get('password'))
             user.name = self.testing_user.get('name')
             user.birthday = datetime.datetime.strptime(self.testing_user.get('birthday'), "%Y-%m-%d").date()
@@ -99,11 +91,7 @@ class BaseTestCase(unittest.TestCase):
             for record in self.glycaemia_records:
                 glycemia = GlycaemiaModel(user.id)
                 glycemia.value = record.get('value')
-
-                rand = round(random.uniform(0, 1))
-                state = self.state_records[rand]
-                state = StateModel.getByDescription(state).id
-                glycemia.state_id = state
+                state = self.state_records[round(random.uniform(0, 1))]
                 glycemia.comment = "random record {}".format(state)
                 glycemia.takenAt = datetime.datetime.strptime(record.get('takenAt'), "%Y-%m-%d %H:%M:%S").date()
                 db.session.add(glycemia)

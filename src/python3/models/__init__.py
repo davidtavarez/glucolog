@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, TIMESTAMP, func
 db = SQLAlchemy()
 
 
-class Resource(Model):
+class BaseModel(Model):
     id = Column(Integer(), primary_key=True)
     createdAt = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
     updatedAt = Column(TIMESTAMP, server_default=func.current_timestamp(),

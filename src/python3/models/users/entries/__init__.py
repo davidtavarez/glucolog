@@ -1,13 +1,13 @@
 from sqlalchemy.ext.hybrid import hybrid_method
 
-from models import db, Resource
+from models import db, BaseModel
 
 from flask_sqlalchemy import Model
 
-class Entry(Resource):
+class Entry(BaseModel):
     takenAt = db.Column(db.DateTime(), nullable=False)
 
-class EntryPhoto(Resource, Model):
+class EntryPhoto(BaseModel, Model):
     def __init__(self, record_id) -> None:
         super().__init__()
         self.record = record_id

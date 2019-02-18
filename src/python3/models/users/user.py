@@ -3,7 +3,7 @@ import enum
 from passlib.hash import pbkdf2_sha256 as sha256
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 
-from models import db, Resource
+from models import db, BaseModel
 
 
 class Sex(enum.Enum):
@@ -16,7 +16,7 @@ class DiabetesType(enum.Enum):
     two = "two"
 
 
-class User(Resource, db.Model):
+class User(BaseModel, db.Model):
     def __init__(self, email, password) -> None:
         super().__init__()
         self.email = email

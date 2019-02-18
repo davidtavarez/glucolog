@@ -17,12 +17,7 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def seed():
-    from models.utils.state import State
-    fasting = State('fasting')
-    post_meal = State('post-meal')
-    db.session.add(fasting)
-    db.session.add(post_meal)
-    db.session.commit()
+    pass
 
 if __name__ == '__main__':
     manager.run()
