@@ -13,10 +13,10 @@ WORKDIR /app
 COPY --from=BUILD /install /usr/local
 COPY . .
 
+EXPOSE 2009
+
 RUN python ./src/migrate.py db init
 RUN python ./src/migrate.py db migrate
 RUN python ./src/migrate.py db upgrade
 
-EXPOSE 2009
-
-CMD python run.py
+CMD python ./src/run.py
