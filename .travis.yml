@@ -11,7 +11,7 @@ matrix:
       - CONFIG_FILE=testing.json
       - TESTING=1
     before_script:
-      - python3 -m pip install --user -r requirements.txt
+      - python3 -m pip install -r requirements.txt
       - cd $TRAVIS_BUILD_DIR/src/
       - rm -Rf migrations
       - python3 migrate.py db init
