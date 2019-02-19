@@ -15,5 +15,6 @@ matrix:
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db init
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db migrate
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db upgrade
+      - cp $TRAVIS_BUILD_DIR/instance/testing.json $TRAVIS_BUILD_DIR/src/
     script:
       - python3 $TRAVIS_BUILD_DIR/src/test.py
