@@ -20,4 +20,3 @@ matrix:
     script:
       - cd $TRAVIS_BUILD_DIR/src/
       - python3 test.py
-`
