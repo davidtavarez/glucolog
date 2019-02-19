@@ -2,6 +2,7 @@
     "FLASK_ENV": "testing",
     "DEBUG": true,
     "TESTING": true,
+    "CONFIG_FILE": "instance/testing.json",
     "SECRET_KEY": "SUPERSUPERSECRETKEY0123456789!",
     "SQLALCHEMY_DATABASE_URI": "sqlite:////tmp/test.db",
     "SQLALCHEMY_TRACK_MODIFICATIONS": false

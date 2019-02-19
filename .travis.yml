@@ -10,6 +10,7 @@ matrix:
       - API_VERSION=1
       - CONFIG_FILE=$TRAVIS_BUILD_DIR/instance/testing.json
       - TESTING=1
+      - DEBUG=1
     before_script:
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db init
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db migrate
