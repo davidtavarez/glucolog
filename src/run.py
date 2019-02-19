@@ -15,22 +15,20 @@ def create_app(config, version):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_json(config)
 
-    app.register_blueprint(blueprint, url_prefix=f"/api/v{version}")
+    app.register_blueprint(blueprint, url_prefix="/api/v{}".format(version))
 
     db.init_app(app)
 
     return app
 
-
-if __name__ == "__main__":
-    app = create_app(CONFIG_FILE, VERSION)
-    jwt = JWTManager(app)
+app = create_app(CONFIG_FILE, VERSION)
+jwt = JWTManager(app)
 
 
-    @jwt.token_in_blacklist_loader
-    def check_if_token_in_blacklist(decrypted_token):
-        jti = decrypted_token['jti']
-        return RevokedTokenModel.is_jti_blacklisted(jti)
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    jti = decrypted_token['jti']
+    return RevokedTokenModel.is_jti_blacklisted(jti)
 
 
-    app.run(host='0.0.0.0', port=2009)
+app.run(host='0.0.0.0', port=2009)

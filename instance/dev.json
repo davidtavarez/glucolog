@@ -1,7 +1,7 @@
 {
-    "FLASK_ENV": "dev",
+    "FLASK_ENV": "development",
     "DEBUG": true,
-    "TESTING": false,
+    "TESTING": true,
     "SECRET_KEY": "SUPERSUPERSECRETKEY0123456789!",
     "SQLALCHEMY_DATABASE_URI": "sqlite:////tmp/dev.db",
     "SQLALCHEMY_TRACK_MODIFICATIONS": false

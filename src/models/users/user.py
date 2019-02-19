@@ -69,4 +69,4 @@ class User(BaseModel, db.Model):
         return cls.query.join(Key).filter(Key.username == username and Key.value == key).first()
 
     def __repr__(self):
-        return f"{self.email}"
+        return "{}".format(self.email)

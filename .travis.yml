@@ -18,5 +18,4 @@ matrix:
       - python3 migrate.py db migrate
       - python3 migrate.py db upgrade
     script:
-      - cd $TRAVIS_BUILD_DIR/src/
-      - python3 test.py
+      - python3 src/test.py
