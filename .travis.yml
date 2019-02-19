@@ -4,13 +4,14 @@ matrix:
     language: python
     python: 3.7
     dist: xenial
-    sudo: false
+    sudo: true
     env:
       - FLASK_ENV=development
       - API_VERSION=1
       - CONFIG_FILE=testing.json
       - TESTING=1
     before_script:
+      - python3 -m pip install setuptools
       - python3 -m pip install -r requirements.txt
       - cd $TRAVIS_BUILD_DIR/src/
       - rm -Rf migrations
