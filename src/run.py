@@ -8,7 +8,7 @@ from blueprint import blueprint
 from models import db
 
 VERSION = os.getenv('API_VERSION', 1)
-CONFIG_FILE = os.getenv('CONFIG_FILE', 'dev.json')
+CONFIG_FILE = os.getenv('CONFIG_FILE', 'development.json')
 
 
 def create_app(config, version):

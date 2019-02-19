@@ -8,12 +8,9 @@ matrix:
     env:
       - FLASK_ENV=development
       - API_VERSION=1
-      - CONFIG_FILE=testing.json
+      - CONFIG_FILE=$TRAVIS_BUILD_DIR/instance/testing.json
       - TESTING=1
     before_script:
-      - python3 -m pip install setuptools
-      - python3 -m pip install -r requirements.txt
-      - rm -Rf migrations
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db init
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db migrate
       - python3 $TRAVIS_BUILD_DIR/src/migrate.py db upgrade

@@ -7,7 +7,7 @@ from models import db
 from run import create_app
 
 VERSION = os.getenv('API_VERSION', 1)
-CONFIG_FILE = os.getenv('CONFIG_FILE', 'dev.json')
+CONFIG_FILE = os.getenv('CONFIG_FILE', 'development.json')
 
 app = create_app(CONFIG_FILE, VERSION)
 
