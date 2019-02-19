@@ -13,10 +13,9 @@ matrix:
     before_script:
       - python3 -m pip install setuptools
       - python3 -m pip install -r requirements.txt
-      - cd $TRAVIS_BUILD_DIR/src/
       - rm -Rf migrations
-      - python3 migrate.py db init
-      - python3 migrate.py db migrate
-      - python3 migrate.py db upgrade
+      - python3 $TRAVIS_BUILD_DIR/src/migrate.py db init
+      - python3 $TRAVIS_BUILD_DIR/src/migrate.py db migrate
+      - python3 $TRAVIS_BUILD_DIR/src/migrate.py db upgrade
     script:
-      - python3 src/test.py
+      - python3 $TRAVIS_BUILD_DIR/src/test.py
